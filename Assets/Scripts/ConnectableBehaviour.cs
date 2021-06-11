@@ -7,6 +7,7 @@ public class ConnectableBehaviour : RigidBodyBehaviour
     protected ConnectableBehaviour previousConnectedItem;
     protected ConnectableBehaviour nextConnectedItem;
     private LineRenderer nextItemLine;
+    private Joint2D joint;
 
     // Start is called before the first frame update
     protected new void Start()
@@ -14,6 +15,8 @@ public class ConnectableBehaviour : RigidBodyBehaviour
         base.Start();
 
         nextItemLine = GetComponent<LineRenderer>();
+        joint = GetComponent<Joint2D>();
+        Debug.Log(joint == null);
     }
 
     // Update is called once per frame
@@ -21,11 +24,15 @@ public class ConnectableBehaviour : RigidBodyBehaviour
     {
         if (nextConnectedItem != null)
         {
+            // Set up the line coordinates
             nextItemLine.SetPositions(new List<Vector3> {
                 this.transform.position,
                 nextConnectedItem.transform.position
             }.ToArray());
-            Debug.Log("Trying to draw line");
+        }
+        else
+        {
+            joint.enabled = false;
         }
     }
 
@@ -34,6 +41,10 @@ public class ConnectableBehaviour : RigidBodyBehaviour
         // Link as data
         this.nextConnectedItem = that;
         that.previousConnectedItem = this;
+
+        // Link with hinge
+        joint.enabled = true;
+        joint.connectedBody = that.gameObject.GetComponent<Rigidbody2D>();
     }
 
     public List<ConnectableBehaviour> GetChain()

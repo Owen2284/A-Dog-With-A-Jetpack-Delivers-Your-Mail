@@ -11,14 +11,14 @@ public class PlayerBehaviour : ConnectableBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         base.Update();
 
         float v = Input.GetAxisRaw("Vertical");
         float h = Input.GetAxisRaw("Horizontal");
 
-        body.AddForce(transform.up * v * 10);
-        body.AddForce(transform.right * h * 10);
+        body.AddForce(transform.up * v * body.mass * 10);
+        body.AddForce(transform.right * h * body.mass * 10);
     }
 }

@@ -37,12 +37,12 @@ public class GameManagerBehaviour : MonoBehaviour
                 if (chain.Contains(deliverable))
                 {
                     Debug.Log("Already in chain");
-                    return;
+                    continue;
                 }
 
                 // Determine distance to deliverable
                 var distance = Vector2.Distance(
-                    player.transform.position,
+                    endOfChain.transform.position,
                     deliverable.transform.position
                 );
 
