@@ -5,16 +5,28 @@ using System.Linq;
 
 public class GameManagerBehaviour : MonoBehaviour
 {
-    public int connectionDistance = 1;
+    public int initialDeliveryCount = 3;
 
-    public float remainingTime = 60;
+    public int connectionDistance = 1;
+    public int maxChainLength = 5;
+
+    // TODO: Move to camera script?
+    public float cameraMinZoom = 2;
+    public float cameraMaxZoom = 16;
+
+    public float initialTime = 60;
+
+    public float timeBetweenNewDeliveries = 30;
 
     public List<GameObject> deliveryPrefabs;
 
     private int score;
+    private float remainingTime;
+    private float timeUntilNewDeliveries;
     private PlayerBehaviour player;
     private List<DeliveryBehaviour> deliveries;
     private List<MailboxBehaviour> mailboxes;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +40,21 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Generate initial deliveries
         deliveries = new List<DeliveryBehaviour>();
-        for (var i = 0; i < 3; i++)
-        {
-            var deliveryPrefab = deliveryPrefabs[Random.Range(0, deliveryPrefabs.Count)];
-            var mailbox = mailboxes[Random.Range(0, mailboxes.Count)];
-            var delivery = Instantiate(deliveryPrefab, new Vector2(i - 2, 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
-            delivery.SetTarget(mailbox);
-            deliveries.Add(delivery);
-        }
+        GenerateNewDeliveries(initialDeliveryCount);
+
+        // Start timers and initialise score
+        timeUntilNewDeliveries = timeBetweenNewDeliveries;
+        remainingTime = initialTime;
+        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Tick timers
+        remainingTime -= Time.deltaTime;
+        timeUntilNewDeliveries -= Time.deltaTime;
+
         // Get the item currently at the end of the chain of items
         var chain = player.GetChain();
         var endOfChain = chain.Last();
@@ -48,30 +62,56 @@ public class GameManagerBehaviour : MonoBehaviour
         // Check to see if the connect key has been hit
         if (Input.GetKeyDown("space"))
         {
-            foreach (var delivery in deliveries)
+            if (chain.Count <= maxChainLength)
             {
-                // Skip if already in chain
-                if (chain.Contains(delivery))
+                foreach (var delivery in deliveries)
                 {
-                    continue;
-                }
+                    // Skip if already in chain
+                    if (chain.Contains(delivery))
+                    {
+                        continue;
+                    }
 
-                // Determine distance to delivery
-                var distance = Vector2.Distance(
-                    endOfChain.transform.position,
-                    delivery.transform.position
-                );
+                    // Determine distance to delivery
+                    var distance = Vector2.Distance(
+                        endOfChain.transform.position,
+                        delivery.transform.position
+                    );
 
-                // If close enough, connect
-                if (distance < connectionDistance)
-                {
-                    endOfChain.SetNextConnection(delivery);
-                    break;
+                    // If close enough, connect
+                    if (distance < connectionDistance)
+                    {
+                        endOfChain.SetNextConnection(delivery);
+                        break;
+                    }
                 }
             }
         }
 
-        remainingTime -= Time.deltaTime;
+        // Handle camera zoom
+        Camera.main.orthographicSize = Mathf.Min(Mathf.Max(Camera.main.orthographicSize - Input.mouseScrollDelta.y, cameraMinZoom), cameraMaxZoom);
+
+        // Create new deliveries when timer expires / when no deliveries remain
+        if (timeUntilNewDeliveries <= 0 || deliveries.Count == 0)
+        {
+            // Create new deliveries
+            GenerateNewDeliveries(initialDeliveryCount);
+
+            // Reset timer
+            timeUntilNewDeliveries = timeBetweenNewDeliveries;
+        }
+    }
+
+    private void GenerateNewDeliveries(int count)
+    {
+        for (var i = 0; i < count; i++)
+        {
+            var deliveryPrefab = deliveryPrefabs[Random.Range(0, deliveryPrefabs.Count)];
+            var mailbox = mailboxes[Random.Range(0, mailboxes.Count)];
+            var delivery = Instantiate(deliveryPrefab, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
+            delivery.SetTarget(mailbox);
+            deliveries.Add(delivery);
+        }
     }
 
     public void Deliver(DeliveryBehaviour delivery)
