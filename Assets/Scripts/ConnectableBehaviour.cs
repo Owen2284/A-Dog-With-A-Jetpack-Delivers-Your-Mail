@@ -129,7 +129,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         enemy.PushAwayFrom(pointOfCollision, 1200);
 
         // Ignore request for damage if invincible
-        if (invincibilityTime > 0)
+        if (invincibilityTimeRemaining > 0)
         {
             return;
         }

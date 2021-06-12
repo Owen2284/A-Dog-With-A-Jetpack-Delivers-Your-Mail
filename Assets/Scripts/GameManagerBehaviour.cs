@@ -16,6 +16,10 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public Vector2 gameplayArea = new Vector2(240, 150);
 
+    public List<GameObject> flockTypes = new List<GameObject>();
+    public int initialFlocks = 6;
+    public int flocksPerDelivery = 2;
+
     public float initialTime = 60;
     public float bonusTimePerDelivery = 10;
 
@@ -49,7 +53,10 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Generate initial deliveries
         deliveries = new List<DeliveryBehaviour>();
-        GenerateNewDeliveries(initialDeliveryCount, false);
+        GenerateDeliveries(initialDeliveryCount, false);
+
+        // Generate initial enemies
+        GenerateFlocks(initialFlocks);
 
         // Start timers and initialise score
         timeUntilNewDeliveries = timeBetweenNewDeliveries;
@@ -122,7 +129,7 @@ public class GameManagerBehaviour : MonoBehaviour
             if (timeUntilNewDeliveries <= 0 || deliveries.Count == 0)
             {
                 // Create new deliveries
-                GenerateNewDeliveries(initialDeliveryCount);
+                GenerateDeliveries(initialDeliveryCount);
 
                 // Reset timer
                 timeUntilNewDeliveries = timeBetweenNewDeliveries;
@@ -143,7 +150,7 @@ public class GameManagerBehaviour : MonoBehaviour
         }
     }
 
-    private void GenerateNewDeliveries(int count, bool alert = true)
+    private void GenerateDeliveries(int count, bool alert = true)
     {
         for (var i = 0; i < count; i++)
         {
@@ -157,6 +164,45 @@ public class GameManagerBehaviour : MonoBehaviour
         if (alert)
         {
             AddAlert("New deliveries available on Mail Island!");
+        }
+    }
+
+    private void GenerateFlocks(int count)
+    {
+        var terrain = GameObject.FindGameObjectsWithTag("Terrain");
+
+        for (var i = 0; i < count; i++)
+        {
+            // Determine spawn location (prevent spawning too close to an island)
+            Vector2 flockPosition = new Vector2(0, 0);
+            bool safeToSpawn = false;
+            do
+            {
+                flockPosition = new Vector2(
+                    Random.Range(-1 * gameplayArea.x, gameplayArea.x),
+                    Random.Range(-1 * gameplayArea.y, gameplayArea.y)
+                );
+
+                bool notNearTerrain = true;
+                foreach (var ter in terrain)
+                {
+                    var distanceToTerrain = Vector2.Distance(
+                        ter.transform.position,
+                        flockPosition
+                    );
+
+                    if (distanceToTerrain < 16)
+                    {
+                        notNearTerrain = false;
+                    }
+                }
+
+                safeToSpawn = notNearTerrain;
+            } while (!safeToSpawn);
+
+            // Instantiate flock
+            var flockType = flockTypes[Random.Range(0, flockTypes.Count)];
+            var flock = Instantiate(flockType, flockPosition, Quaternion.identity).GetComponent<DeliveryBehaviour>();
         }
     }
 
@@ -186,6 +232,9 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Destroy delivery
         Destroy(delivery.gameObject);
+
+        // Add new enemies to the map
+        GenerateFlocks(flocksPerDelivery);
     }
 
     public PlayerBehaviour GetPlayer()

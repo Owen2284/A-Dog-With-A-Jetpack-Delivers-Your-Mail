@@ -17,7 +17,7 @@ public class GameOverBehaviour : MonoBehaviour
 
     public void UpdateText(int deliveries, int score)
     {
-        this.gameObject.active = true;
+        this.gameObject.SetActive(true);
 
         deliveriesText.text = deliveries.ToString();
         scoreText.text = score.ToString();
