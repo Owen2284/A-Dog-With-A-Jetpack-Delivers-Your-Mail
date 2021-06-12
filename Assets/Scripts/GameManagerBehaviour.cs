@@ -26,13 +26,16 @@ public class GameManagerBehaviour : MonoBehaviour
     public List<GameObject> deliveryPrefabs;
 
     private int score;
+    private int deliveryTotal;
     private float remainingTime;
     private float timeUntilNewDeliveries;
     private PlayerBehaviour player;
     private List<DeliveryBehaviour> deliveries;
     private List<MailboxBehaviour> mailboxes;
 
-    private List<AlertItem> alerts;
+    private List<AlertItem> alerts = new List<AlertItem>();
+
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,17 +49,16 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Generate initial deliveries
         deliveries = new List<DeliveryBehaviour>();
-        GenerateNewDeliveries(initialDeliveryCount);
+        GenerateNewDeliveries(initialDeliveryCount, false);
 
         // Start timers and initialise score
         timeUntilNewDeliveries = timeBetweenNewDeliveries;
         remainingTime = initialTime;
         score = 0;
+        deliveryTotal = 0;
 
         // Show game start alert
-        alerts = new List<AlertItem> {
-            new AlertItem("Go!", alertRetentionTime)
-        };
+        AddAlert("Go!");
     }
 
     // Update is called once per frame
@@ -69,57 +71,62 @@ public class GameManagerBehaviour : MonoBehaviour
         // End game if timer has hit zero
         if (remainingTime == 0)
         {
-            // TODO
+            gameOver = true;
+            player.DisableControl();
         }
 
-        // Get the item currently at the end of the chain of items
-        var chain = player.GetChain();
-        var endOfChain = chain.Last();
-
-        // Check to see if the connect key has been hit
-        if (Input.GetKeyDown("space"))
+        // If game isn't over, run systems as usual
+        if (!gameOver)
         {
-            if (chain.Count <= maxChainLength)
+            // Get the item currently at the end of the chain of items
+            var chain = player.GetChain();
+            var endOfChain = chain.Last();
+
+            // Check to see if the connect key has been hit
+            if (Input.GetKeyDown("space"))
             {
-                foreach (var delivery in deliveries)
+                if (chain.Count <= maxChainLength)
                 {
-                    // Skip if already in chain
-                    if (chain.Contains(delivery))
+                    foreach (var delivery in deliveries)
                     {
-                        continue;
-                    }
+                        // Skip if already in chain
+                        if (chain.Contains(delivery))
+                        {
+                            continue;
+                        }
 
-                    // Determine distance to delivery
-                    var distance = Vector2.Distance(
-                        endOfChain.transform.position,
-                        delivery.transform.position
-                    );
+                        // Determine distance to delivery
+                        var distance = Vector2.Distance(
+                            endOfChain.transform.position,
+                            delivery.transform.position
+                        );
 
-                    // If close enough, connect
-                    if (distance < connectionDistance)
-                    {
-                        // Make connection
-                        endOfChain.SetNextConnection(delivery);
+                        // If close enough, connect
+                        if (distance < connectionDistance)
+                        {
+                            // Make connection
+                            endOfChain.SetNextConnection(delivery);
 
-                        // Display effect and play sound
-                        // TODO
-                        break;
+                            // Display effect and play sound
+                            // TODO
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        // Handle camera zoom
-        Camera.main.orthographicSize = Mathf.Min(Mathf.Max(Camera.main.orthographicSize - Input.mouseScrollDelta.y, cameraMinZoom), cameraMaxZoom);
+            // Handle camera zoom
+            Camera.main.orthographicSize = Mathf.Min(Mathf.Max(Camera.main.orthographicSize - Input.mouseScrollDelta.y, cameraMinZoom), cameraMaxZoom);
 
-        // Create new deliveries when timer expires / when no deliveries remain
-        if (timeUntilNewDeliveries <= 0 || deliveries.Count == 0)
-        {
-            // Create new deliveries
-            GenerateNewDeliveries(initialDeliveryCount);
+            // Create new deliveries when timer expires / when no deliveries remain
+            if (timeUntilNewDeliveries <= 0 || deliveries.Count == 0)
+            {
+                // Create new deliveries
+                GenerateNewDeliveries(initialDeliveryCount);
 
-            // Reset timer
-            timeUntilNewDeliveries = timeBetweenNewDeliveries;
+                // Reset timer
+                timeUntilNewDeliveries = timeBetweenNewDeliveries;
+            }
         }
 
         // Time out old alerts
@@ -136,7 +143,7 @@ public class GameManagerBehaviour : MonoBehaviour
         }
     }
 
-    private void GenerateNewDeliveries(int count)
+    private void GenerateNewDeliveries(int count, bool alert = true)
     {
         for (var i = 0; i < count; i++)
         {
@@ -146,6 +153,11 @@ public class GameManagerBehaviour : MonoBehaviour
             delivery.SetTarget(mailbox);
             deliveries.Add(delivery);
         }
+
+        if (alert)
+        {
+            AddAlert("New deliveries available on Mail Island!");
+        }
     }
 
     public void Deliver(DeliveryBehaviour delivery)
@@ -153,17 +165,24 @@ public class GameManagerBehaviour : MonoBehaviour
         // Remove the delivery from the chain
         delivery.BreakChain();
 
-        // Adjust score/time
-        remainingTime += bonusTimePerDelivery;
-        var multiplier = delivery.GetScoreMultiplier();
-        var scoreEarned = 1000 * multiplier;
-        score += scoreEarned;
+        // Only handle these when the game is still going
+        if (!gameOver)
+        {
+            // Adjust score/time
+            remainingTime += bonusTimePerDelivery;
+            var multiplier = delivery.GetScoreMultiplier();
+            var scoreEarned = 1000 * multiplier;
+            score += scoreEarned;
+
+            // Increment delivery total
+            deliveryTotal += 1;
+
+            // Display alert
+            AddAlert($"Package delivered: +{scoreEarned}");
+        }
 
         // Remove delivery from list
         deliveries.Remove(delivery);
-
-        // Display alert
-        AddAlert($"Package delivered: +{scoreEarned}");
 
         // Destroy delivery
         Destroy(delivery.gameObject);
@@ -182,6 +201,11 @@ public class GameManagerBehaviour : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    public int GetDeliveryTotal()
+    {
+        return deliveryTotal;
     }
 
     public void AddAlert(string message, bool positive = true)
@@ -212,6 +236,11 @@ public class GameManagerBehaviour : MonoBehaviour
         }
 
         return data;
+    }
+
+    public bool IsGameOver()
+    {
+        return gameOver;
     }
 }
 

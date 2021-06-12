@@ -19,4 +19,10 @@ public class TimeScoreBehaviour : MonoBehaviour
         timeText.text = Mathf.Floor(time).ToString();
         scoreText.text = $"Score: {score}";
     }
+
+    public void DisplayGameOverText()
+    {
+        timeText.text = "GAME OVER";
+        scoreText.text = "";
+    }
 }

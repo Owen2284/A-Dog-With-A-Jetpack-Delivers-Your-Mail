@@ -124,6 +124,16 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Get point of collision
         var pointOfCollision = collision.GetContact(0).point;
 
+        // Push entities away
+        PushAwayFrom(pointOfCollision, 1200);
+        enemy.PushAwayFrom(pointOfCollision, 1200);
+
+        // Ignore request for damage if invincible
+        if (invincibilityTime > 0)
+        {
+            return;
+        }
+
         // Reduce connection health
         connectionHealth -= 1;
 
@@ -136,9 +146,5 @@ public class ConnectableBehaviour : BaseEntityBehaviour
 
         // Trigger invincibility
         invincibilityTimeRemaining = invincibilityTime;
-
-        // Push entities away
-        PushAwayFrom(pointOfCollision, 1200);
-        enemy.PushAwayFrom(pointOfCollision, 1200);
     }
 }

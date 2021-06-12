@@ -10,7 +10,7 @@ public class MinimapBehaviour : MonoBehaviour
     private float panelWidth;
     private float panelHeight;
 
-    private bool testDone = false;
+    //private bool testDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,9 @@ public class MinimapBehaviour : MonoBehaviour
 
     public void UpdateMinimap(MinimapData data)
     {
-        var playerIconRectTransform = playerIcon.GetComponent<RectTransform>();
-        playerIconRectTransform.SetParent(this.gameObject.transform);
-        Debug.Log(playerIconRectTransform.position);
+        // var playerIconRectTransform = playerIcon.GetComponent<RectTransform>();
+        // playerIconRectTransform.SetParent(this.gameObject.transform);
+        // Debug.Log(playerIconRectTransform.position);
     }
 
     public Vector2 ScalePosition(Vector2 position)
