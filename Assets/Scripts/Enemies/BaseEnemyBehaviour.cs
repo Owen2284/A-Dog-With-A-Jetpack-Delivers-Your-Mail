@@ -31,4 +31,16 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
             t.gameObject.GetComponent<ConnectableBehaviour>().TakeDamage(this, t);
         }
     }
+
+    public void TakeDamage()
+    {
+        // Reduce health
+        health -= 1;
+
+        // Destroy entity if at zero health
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
