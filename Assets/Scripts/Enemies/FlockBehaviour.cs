@@ -19,7 +19,7 @@ public class FlockBehaviour : MonoBehaviour
 
         for (var i = 0; i < numberToSpawn; i++)
         {
-            var enemy = (Instantiate(enemyToSpawn, transform.position + new Vector3(Random.Range(-5, 6), Random.Range(-5, 6), 0), Quaternion.identity)).GetComponent<BaseEnemyBehaviour>();
+            var enemy = (Instantiate(enemyToSpawn, transform.position + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0), Quaternion.identity)).GetComponent<BaseEnemyBehaviour>();
             enemies.Add(enemy);
         }
 
