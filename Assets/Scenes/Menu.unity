@@ -1092,7 +1092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440, y: 142.36}
+  m_AnchoredPosition: {x: 440, y: 197.1}
   m_SizeDelta: {x: 201.4528, y: 55.2321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717236577
@@ -1601,8 +1601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440.00003, y: 0}
-  m_SizeDelta: {x: 746.8282, y: 177.22}
+  m_AnchoredPosition: {x: 440.00003, y: 24.4393}
+  m_SizeDelta: {x: 746.8282, y: 226.0986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &883569560
 MonoBehaviour:
@@ -1631,7 +1631,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1644,7 +1644,11 @@ MonoBehaviour:
     of the chain is in reach)
 
 
-    Click - Bark at enemies'
+    Click - Bark at enemies
+
+
+    Scroll mouse wheel
+    - Zoom in / out'
 --- !u!222 &883569561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3657,7 +3661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1885056520
 RectTransform:
   m_ObjectHideFlags: 0
