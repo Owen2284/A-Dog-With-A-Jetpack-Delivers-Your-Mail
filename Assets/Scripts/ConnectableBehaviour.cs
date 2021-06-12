@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectableBehaviour : RigidBodyBehaviour
+public class ConnectableBehaviour : BaseEntityBehaviour
 {
     protected ConnectableBehaviour previousConnectedItem;
     protected ConnectableBehaviour nextConnectedItem;
@@ -16,7 +16,6 @@ public class ConnectableBehaviour : RigidBodyBehaviour
 
         nextItemLine = GetComponent<LineRenderer>();
         joint = GetComponent<Joint2D>();
-        Debug.Log(joint == null);
     }
 
     // Update is called once per frame
@@ -30,10 +29,6 @@ public class ConnectableBehaviour : RigidBodyBehaviour
                 nextConnectedItem.transform.position
             }.ToArray());
         }
-        else
-        {
-            joint.enabled = false;
-        }
     }
 
     public void SetNextConnection(ConnectableBehaviour that)
@@ -41,6 +36,13 @@ public class ConnectableBehaviour : RigidBodyBehaviour
         // Link as data
         this.nextConnectedItem = that;
         that.previousConnectedItem = this;
+
+        // Link with line
+        nextItemLine.enabled = true;
+        nextItemLine.SetPositions(new List<Vector3> {
+            this.transform.position,
+            nextConnectedItem.transform.position
+        }.ToArray());
 
         // Link with hinge
         joint.enabled = true;
@@ -59,5 +61,29 @@ public class ConnectableBehaviour : RigidBodyBehaviour
         }
 
         return chain;
+    }
+
+    public void BreakChain(bool violent = false)
+    {
+        // Safely disconnect from the previous item
+        if (previousConnectedItem != null)
+        {
+            previousConnectedItem.nextConnectedItem = null;
+            previousConnectedItem.joint.enabled = false;
+            previousConnectedItem.joint.connectedBody = null;
+            previousConnectedItem.nextItemLine.enabled = false;
+        }
+
+        // Carry on down the line
+        if (nextConnectedItem != null)
+        {
+            nextConnectedItem.BreakChain();
+        }
+
+        // Apply random force if it's a violent break
+        if (violent)
+        {
+            body.AddForce(new Vector2(Random.Range(-10, 11), Random.Range(-10, 11)));
+        }
     }
 }
