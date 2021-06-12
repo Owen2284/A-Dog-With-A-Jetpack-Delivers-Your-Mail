@@ -2080,6 +2080,7 @@ MonoBehaviour:
   connectionMaxHealth: 3
   invincibilityTime: 1.5
   timeBetweenShots: 0.75
+  projectileSpeed: 10
   projectile: {fileID: 7925311002264915119, guid: 11f0014262fe1584bb9ac7541a1377c2, type: 3}
 --- !u!70 &1029565194
 CapsuleCollider2D:
@@ -2162,7 +2163,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0.3882353, g: 0.2784314, b: 0, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 0.3882353, g: 0.2784314, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
