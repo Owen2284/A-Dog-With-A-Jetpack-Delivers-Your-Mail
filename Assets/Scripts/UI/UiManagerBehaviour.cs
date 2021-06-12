@@ -6,7 +6,7 @@ public class UiManagerBehaviour : MonoBehaviour
 {
     private GameManagerBehaviour gameManager;
     private AlertAreaBehaviour alertArea;
-    private HealthBarBehaviour healthBar;
+    private HealthChainBehaviour healthChain;
     private MinimapBehaviour minimap;
     private TimeScoreBehaviour timeScore;
 
@@ -14,8 +14,8 @@ public class UiManagerBehaviour : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerBehaviour>();
-        alertArea = transform.Find("Alert Panel").gameObject.GetComponent<AlertAreaBehaviour>();
-        healthBar = transform.Find("Health Panel").gameObject.GetComponent<HealthBarBehaviour>();
+        alertArea = transform.Find("Alerts Panel").gameObject.GetComponent<AlertAreaBehaviour>();
+        healthChain = transform.Find("HealthChain Panel").gameObject.GetComponent<HealthChainBehaviour>();
         minimap = transform.Find("Minimap Panel").gameObject.GetComponent<MinimapBehaviour>();
         timeScore = transform.Find("TimeScore Panel").gameObject.GetComponent<TimeScoreBehaviour>();
     }
@@ -23,6 +23,10 @@ public class UiManagerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var player = gameManager.GetPlayer();
+
+        healthChain.UpdateHealthChain(player.GetHealth(), player.GetChain().Count - 1);
+        alertArea.UpdateAlerts(gameManager.GetAlerts());
         timeScore.UpdateText(gameManager.GetRemainingTime(), gameManager.GetScore());
     }
 }

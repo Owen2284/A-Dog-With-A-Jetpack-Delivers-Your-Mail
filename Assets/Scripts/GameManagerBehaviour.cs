@@ -19,6 +19,8 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public float timeBetweenNewDeliveries = 30;
 
+    public float alertRetentionTime = 5;
+
     public List<GameObject> deliveryPrefabs;
 
     private int score;
@@ -28,6 +30,7 @@ public class GameManagerBehaviour : MonoBehaviour
     private List<DeliveryBehaviour> deliveries;
     private List<MailboxBehaviour> mailboxes;
 
+    private List<AlertItem> alerts;
 
     // Start is called before the first frame update
     void Start()
@@ -47,14 +50,25 @@ public class GameManagerBehaviour : MonoBehaviour
         timeUntilNewDeliveries = timeBetweenNewDeliveries;
         remainingTime = initialTime;
         score = 0;
+
+        // Show game start alert
+        alerts = new List<AlertItem> {
+            new AlertItem("Go!", alertRetentionTime)
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
         // Tick timers
-        remainingTime -= Time.deltaTime;
+        remainingTime = Mathf.Max(remainingTime - Time.deltaTime, 0);
         timeUntilNewDeliveries -= Time.deltaTime;
+
+        // End game if timer has hit zero
+        if (remainingTime == 0)
+        {
+            // TODO
+        }
 
         // Get the item currently at the end of the chain of items
         var chain = player.GetChain();
@@ -82,7 +96,11 @@ public class GameManagerBehaviour : MonoBehaviour
                     // If close enough, connect
                     if (distance < connectionDistance)
                     {
+                        // Make connection
                         endOfChain.SetNextConnection(delivery);
+
+                        // Display effect and play sound
+                        // TODO
                         break;
                     }
                 }
@@ -100,6 +118,19 @@ public class GameManagerBehaviour : MonoBehaviour
 
             // Reset timer
             timeUntilNewDeliveries = timeBetweenNewDeliveries;
+        }
+
+        // Time out old alerts
+        for (var alertNum = alerts.Count - 1; alertNum >= 0; alertNum--)
+        {
+            var alert = alerts[alertNum];
+
+            alert.TimeToLive -= Time.deltaTime;
+
+            if (alert.TimeToLive <= 0)
+            {
+                alerts.Remove(alert);
+            }
         }
     }
 
@@ -122,10 +153,15 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Adjust score/time
         remainingTime += bonusTimePerDelivery;
-        score += 1000 * delivery.GetScoreMultiplier();
+        var multiplier = delivery.GetScoreMultiplier();
+        var scoreEarned = 1000 * multiplier;
+        score += scoreEarned;
 
         // Remove delivery from list
         deliveries.Remove(delivery);
+
+        // Display alert
+        AddAlert($"Package delivered: +{scoreEarned}");
 
         // Destroy delivery
         Destroy(delivery.gameObject);
@@ -144,5 +180,32 @@ public class GameManagerBehaviour : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+    public void AddAlert(string message, bool positive = true)
+    {
+        // Store alert
+        alerts.Add(new AlertItem(message, alertRetentionTime));
+
+        // Play sound
+        // TODO
+    }
+
+    public List<string> GetAlerts()
+    {
+        return alerts.Select(x => x.Message).ToList();
+    }
+}
+
+public class AlertItem
+{
+    public string Message { get; set; }
+
+    public float TimeToLive { get; set; }
+
+    public AlertItem(string message, float timeToLive)
+    {
+        Message = message;
+        TimeToLive = timeToLive;
     }
 }

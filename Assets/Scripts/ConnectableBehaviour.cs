@@ -69,6 +69,14 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Link with hinge
         joint.enabled = true;
         joint.connectedBody = that.gameObject.GetComponent<Rigidbody2D>();
+
+        // Reset target connection health
+        that.connectionHealth = that.connectionMaxHealth;
+    }
+
+    public int GetHealth()
+    {
+        return connectionHealth;
     }
 
     public List<ConnectableBehaviour> GetChain()
@@ -102,10 +110,12 @@ public class ConnectableBehaviour : BaseEntityBehaviour
             nextConnectedItem.BreakChain();
         }
 
-        // Apply random force if it's a violent break
+        // Apply random force if it's a violent break, and send alert
         if (violent)
         {
             body.AddForce(new Vector2(Random.Range(-10, 11), Random.Range(-10, 11)));
+
+            gameManager.AddAlert("Chain broken!", false);
         }
     }
 
