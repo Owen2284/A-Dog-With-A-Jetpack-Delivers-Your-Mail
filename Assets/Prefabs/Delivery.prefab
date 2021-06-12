@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5564084310889635049}
   - component: {fileID: -5913943582391644734}
   m_Layer: 7
-  m_Name: Deliverable
+  m_Name: Delivery
   m_TagString: Deliverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,7 @@ SpringJoint2D:
   m_GameObject: {fileID: 5564084310889635050}
   m_Enabled: 0
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity

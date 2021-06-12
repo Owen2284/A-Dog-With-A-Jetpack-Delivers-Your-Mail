@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Deliverable
+  - GameManager
+  - Mailbox
   layers:
   - Default
   - TransparentFX

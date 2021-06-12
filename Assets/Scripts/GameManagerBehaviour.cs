@@ -9,11 +9,11 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public float remainingTime = 60;
 
-    public GameObject deliverablePrefab;
+    public GameObject deliveryPrefab;
 
     private int score;
     private PlayerBehaviour player;
-    private List<DeliverableBehaviour> deliverables;
+    private List<DeliveryBehaviour> deliveries;
     private List<MailboxBehaviour> mailboxes;
 
     // Start is called before the first frame update
@@ -26,13 +26,13 @@ public class GameManagerBehaviour : MonoBehaviour
         mailboxes = GameObject.FindGameObjectsWithTag("Mailbox")
             .Select(x => x.GetComponent<MailboxBehaviour>()).ToList();
 
-        // Generate initial deliverables
-        deliverables = new List<DeliverableBehaviour>();
+        // Generate initial deliveries
+        deliveries = new List<DeliveryBehaviour>();
         for (var i = 0; i < 3; i++)
         {
-            var deliverable = Instantiate(deliverablePrefab, new Vector2(i - 2, 0), Quaternion.identity).GetComponent<DeliverableBehaviour>();
-            deliverable.SetTarget(mailboxes[Random.Range(0, mailboxes.Count)]);
-            deliverables.Add(deliverable);
+            var delivery = Instantiate(deliveryPrefab, new Vector2(i - 2, 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
+            delivery.SetTarget(mailboxes[Random.Range(0, mailboxes.Count)]);
+            deliveries.Add(delivery);
         }
     }
 
@@ -46,24 +46,24 @@ public class GameManagerBehaviour : MonoBehaviour
         // Check to see if the connect key has been hit
         if (Input.GetKeyDown("space"))
         {
-            foreach (var deliverable in deliverables)
+            foreach (var delivery in deliveries)
             {
                 // Skip if already in chain
-                if (chain.Contains(deliverable))
+                if (chain.Contains(delivery))
                 {
                     continue;
                 }
 
-                // Determine distance to deliverable
+                // Determine distance to delivery
                 var distance = Vector2.Distance(
                     endOfChain.transform.position,
-                    deliverable.transform.position
+                    delivery.transform.position
                 );
 
                 // If close enough, connect
                 if (distance < connectionDistance)
                 {
-                    endOfChain.SetNextConnection(deliverable);
+                    endOfChain.SetNextConnection(delivery);
                     break;
                 }
             }
@@ -72,7 +72,7 @@ public class GameManagerBehaviour : MonoBehaviour
         remainingTime -= Time.deltaTime;
     }
 
-    public void Deliver(DeliverableBehaviour delivery)
+    public void Deliver(DeliveryBehaviour delivery)
     {
         // Remove the delivery from the chain
         delivery.BreakChain();
@@ -85,7 +85,7 @@ public class GameManagerBehaviour : MonoBehaviour
         Debug.Log("Score: " + score);
 
         // Remove delivery from list
-        deliverables.Remove(delivery);
+        deliveries.Remove(delivery);
 
         // Destroy delivery
         Destroy(delivery.gameObject);

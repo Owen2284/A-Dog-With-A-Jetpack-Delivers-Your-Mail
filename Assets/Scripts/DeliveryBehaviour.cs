@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliverableBehaviour : ConnectableBehaviour
+public class DeliveryBehaviour : ConnectableBehaviour
 {
     private GameObject target;
 
