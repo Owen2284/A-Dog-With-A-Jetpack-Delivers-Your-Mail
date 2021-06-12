@@ -15,6 +15,7 @@ public class GameManagerBehaviour : MonoBehaviour
     public float cameraMaxZoom = 16;
 
     public float initialTime = 60;
+    public float bonusTimePerDelivery = 10;
 
     public float timeBetweenNewDeliveries = 30;
 
@@ -120,11 +121,8 @@ public class GameManagerBehaviour : MonoBehaviour
         delivery.BreakChain();
 
         // Adjust score/time
-        remainingTime += 20f;
+        remainingTime += bonusTimePerDelivery;
         score += 1000 * delivery.GetScoreMultiplier();
-
-        // TODO: Replace with GUI display
-        Debug.Log("Score: " + score);
 
         // Remove delivery from list
         deliveries.Remove(delivery);
@@ -136,5 +134,15 @@ public class GameManagerBehaviour : MonoBehaviour
     public PlayerBehaviour GetPlayer()
     {
         return player;
+    }
+
+    public float GetRemainingTime()
+    {
+        return remainingTime;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
