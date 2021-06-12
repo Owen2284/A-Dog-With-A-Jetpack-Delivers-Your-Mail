@@ -19,4 +19,10 @@ public class BaseEntityBehaviour : MonoBehaviour
     {
 
     }
+
+    public void PushAwayFrom(Vector3 point, float force)
+    {
+        var pushVector = (transform.position - point) * force * body.mass;
+        body.AddForce(pushVector);
+    }
 }

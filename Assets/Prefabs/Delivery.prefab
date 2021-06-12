@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5913943582391644734}
   m_Layer: 7
   m_Name: Delivery
-  m_TagString: Deliverable
+  m_TagString: Delivery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cba2d55c1f5e640bbc0f2497af84c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectionMaxHealth: 3
+  invincibilityTime: 1.5
 --- !u!120 &5564084310889635049
 LineRenderer:
   m_ObjectHideFlags: 0

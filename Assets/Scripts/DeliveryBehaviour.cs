@@ -39,8 +39,6 @@ public class DeliveryBehaviour : ConnectableBehaviour
 
     public int GetScoreMultiplier()
     {
-        Debug.Log(timeSinceSpawn);
-
         if (timeSinceSpawn < 30)
         {
             return 4;

@@ -15,10 +15,13 @@ public class PlayerBehaviour : ConnectableBehaviour
     {
         base.Update();
 
-        float v = Input.GetAxisRaw("Vertical");
-        float h = Input.GetAxisRaw("Horizontal");
+        if (invincibilityTimeRemaining <= invincibilityTime / 2)
+        {
+            float v = Input.GetAxisRaw("Vertical");
+            float h = Input.GetAxisRaw("Horizontal");
 
-        body.AddForce(transform.up * v * body.mass * 10);
-        body.AddForce(transform.right * h * body.mass * 10);
+            body.AddForce(transform.up * v * body.mass * 10);
+            body.AddForce(transform.right * h * body.mass * 10);
+        }
     }
 }

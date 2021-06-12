@@ -90,4 +90,9 @@ public class GameManagerBehaviour : MonoBehaviour
         // Destroy delivery
         Destroy(delivery.gameObject);
     }
+
+    public PlayerBehaviour GetPlayer()
+    {
+        return player;
+    }
 }

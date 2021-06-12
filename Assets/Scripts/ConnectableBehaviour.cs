@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class ConnectableBehaviour : BaseEntityBehaviour
 {
+    public int connectionMaxHealth = 3;
+    public float invincibilityTime = 1.5f;
+
+    protected int connectionHealth;
+    protected float invincibilityTimeRemaining;
+
     protected ConnectableBehaviour previousConnectedItem;
     protected ConnectableBehaviour nextConnectedItem;
     private LineRenderer nextItemLine;
     private Joint2D joint;
+    private new Renderer renderer;
 
     // Start is called before the first frame update
     protected new void Start()
     {
         base.Start();
 
+        connectionHealth = connectionMaxHealth;
+
         nextItemLine = GetComponent<LineRenderer>();
         joint = GetComponent<Joint2D>();
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -28,6 +38,18 @@ public class ConnectableBehaviour : BaseEntityBehaviour
                 this.transform.position,
                 nextConnectedItem.transform.position
             }.ToArray());
+        }
+
+        if (invincibilityTimeRemaining > 0)
+        {
+            invincibilityTimeRemaining -= Time.deltaTime;
+            float invincibilityFactor = Mathf.Ceil((invincibilityTimeRemaining / invincibilityTime) * (invincibilityTime * 10));
+            bool visibleThisFrame = invincibilityFactor % 2 == 1;
+            renderer.enabled = visibleThisFrame;
+        }
+        else
+        {
+            renderer.enabled = true;
         }
     }
 
@@ -85,5 +107,28 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         {
             body.AddForce(new Vector2(Random.Range(-10, 11), Random.Range(-10, 11)));
         }
+    }
+
+    public void TakeDamage(BaseEnemyBehaviour enemy, Collision2D collision)
+    {
+        // Get point of collision
+        var pointOfCollision = collision.GetContact(0).point;
+
+        // Reduce connection health
+        connectionHealth -= 1;
+
+        // Break connections if health zero
+        if (connectionHealth <= 0)
+        {
+            this.BreakChain(true);
+            connectionHealth = 3;
+        }
+
+        // Trigger invincibility
+        invincibilityTimeRemaining = invincibilityTime;
+
+        // Push entities away
+        PushAwayFrom(pointOfCollision, 1200);
+        enemy.PushAwayFrom(pointOfCollision, 1200);
     }
 }
