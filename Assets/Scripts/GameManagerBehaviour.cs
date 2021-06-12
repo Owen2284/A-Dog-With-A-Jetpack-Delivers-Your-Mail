@@ -9,7 +9,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public float remainingTime = 60;
 
-    public GameObject deliveryPrefab;
+    public List<GameObject> deliveryPrefabs;
 
     private int score;
     private PlayerBehaviour player;
@@ -30,8 +30,10 @@ public class GameManagerBehaviour : MonoBehaviour
         deliveries = new List<DeliveryBehaviour>();
         for (var i = 0; i < 3; i++)
         {
+            var deliveryPrefab = deliveryPrefabs[Random.Range(0, deliveryPrefabs.Count)];
+            var mailbox = mailboxes[Random.Range(0, mailboxes.Count)];
             var delivery = Instantiate(deliveryPrefab, new Vector2(i - 2, 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
-            delivery.SetTarget(mailboxes[Random.Range(0, mailboxes.Count)]);
+            delivery.SetTarget(mailbox);
             deliveries.Add(delivery);
         }
     }
