@@ -25,8 +25,9 @@ public class UiManagerBehaviour : MonoBehaviour
     {
         var player = gameManager.GetPlayer();
 
-        healthChain.UpdateHealthChain(player.GetHealth(), player.GetChain().Count - 1);
         alertArea.UpdateAlerts(gameManager.GetAlerts());
+        healthChain.UpdateHealthChain(player.GetHealth(), player.GetChain().Count - 1);
+        minimap.UpdateMinimap(gameManager.GetMinimapData());
         timeScore.UpdateText(gameManager.GetRemainingTime(), gameManager.GetScore());
     }
 }

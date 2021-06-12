@@ -16,8 +16,6 @@ public class HealthChainBehaviour : MonoBehaviour
 
     public void UpdateHealthChain(int health, int chainLength)
     {
-        Debug.Log(health);
-
         for (var i = 1; i <= hearts.Count; i++)
         {
             var heart = hearts[i - 1];

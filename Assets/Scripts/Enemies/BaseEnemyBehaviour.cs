@@ -27,7 +27,6 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
     {
         if (t.gameObject.tag == "Player" || t.gameObject.tag == "Delivery")
         {
-            Debug.Log("Collision!");
             // Damage player
             t.gameObject.GetComponent<ConnectableBehaviour>().TakeDamage(this, t);
         }

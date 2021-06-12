@@ -14,6 +14,8 @@ public class GameManagerBehaviour : MonoBehaviour
     public float cameraMinZoom = 2;
     public float cameraMaxZoom = 16;
 
+    public Vector2 gameplayArea = new Vector2(240, 150);
+
     public float initialTime = 60;
     public float bonusTimePerDelivery = 10;
 
@@ -195,6 +197,22 @@ public class GameManagerBehaviour : MonoBehaviour
     {
         return alerts.Select(x => x.Message).ToList();
     }
+
+    public MinimapData GetMinimapData()
+    {
+        var data = new MinimapData();
+
+        data.PlayerLocation = player.transform.position / gameplayArea;
+
+        data.HomeLocation = new Vector2(0, 0);
+
+        foreach (var mailbox in mailboxes)
+        {
+            data.MailboxLocations.Add((mailbox.transform.position / gameplayArea, mailbox.color));
+        }
+
+        return data;
+    }
 }
 
 public class AlertItem
@@ -208,4 +226,11 @@ public class AlertItem
         Message = message;
         TimeToLive = timeToLive;
     }
+}
+
+public class MinimapData
+{
+    public Vector2 PlayerLocation { get; set; }
+    public Vector2 HomeLocation { get; set; }
+    public List<(Vector2, Color)> MailboxLocations { get; set; } = new List<(Vector2, Color)>();
 }
