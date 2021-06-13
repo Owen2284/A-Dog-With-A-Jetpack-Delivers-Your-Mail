@@ -5,33 +5,60 @@ using UnityEngine.UI;
 
 public class MinimapBehaviour : MonoBehaviour
 {
-    public Image playerIcon;
+    public RectTransform playerIcon;
+    public RectTransform homeIcon;
+    public RectTransform mailboxIcon;
 
-    private float panelWidth;
-    private float panelHeight;
+    public float panelWidth = 260;
+    public float panelHeight = 130;
 
-    //private bool testDone = false;
+    private List<RectTransform> mailboxIcons;
 
     // Start is called before the first frame update
     void Start()
     {
-        RectTransform rt = transform.GetComponent<RectTransform>();
-        panelWidth = rt.sizeDelta.x * rt.localScale.x;
-        panelHeight = rt.sizeDelta.y * rt.localScale.y;
+
     }
 
     public void UpdateMinimap(MinimapData data)
     {
-        // var playerIconRectTransform = playerIcon.GetComponent<RectTransform>();
-        // playerIconRectTransform.SetParent(this.gameObject.transform);
-        // Debug.Log(playerIconRectTransform.position);
+        // First time only, create mailbox icons
+        if (mailboxIcons == null)
+        {
+            mailboxIcons = new List<RectTransform>();
+
+            foreach (var (mailboxPosition, maiboxColor) in data.MailboxLocations)
+            {
+                var newMailboxIcon = Instantiate(mailboxIcon, new Vector2(0, 0), Quaternion.identity, this.gameObject.transform);
+                newMailboxIcon.anchoredPosition = ScalePosition(mailboxPosition);
+                newMailboxIcon.GetComponent<Image>().color = maiboxColor;
+                mailboxIcons.Add(newMailboxIcon);
+            }
+
+            Destroy(mailboxIcon.gameObject);
+        }
+
+        // Update player position
+        playerIcon.anchoredPosition = ScalePosition(data.PlayerLocation);
+
+        // Highlight mailboxes if player is carrying a delivery for it
+        foreach (var mi in mailboxIcons)
+        {
+            var mailboxColor = mi.GetComponent<Image>().color;
+
+            if (data.MaiboxesToHighlight.Contains(mailboxColor))
+            {
+                mi.sizeDelta = new Vector2(30, 30);
+            }
+            else
+            {
+                mi.sizeDelta = new Vector2(20, 20);
+            }
+        }
     }
 
     public Vector2 ScalePosition(Vector2 position)
     {
-        Debug.Log(position);
-        Debug.Log(position * new Vector2(panelWidth / 2, panelHeight / 2));
-
-        return position * new Vector2(panelWidth / 2, panelHeight / 2);
+        return new Vector2(panelWidth * position.x, panelHeight * position.y);
     }
 }

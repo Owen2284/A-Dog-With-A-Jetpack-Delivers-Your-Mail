@@ -303,6 +303,11 @@ public class GameManagerBehaviour : MonoBehaviour
             data.MailboxLocations.Add((mailbox.transform.position / gameplayArea, mailbox.color));
         }
 
+        var chain = player.GetChain();
+        chain.Remove(player);
+
+        data.MaiboxesToHighlight = chain.Select(x => ((DeliveryBehaviour)x).GetColor()).ToList();
+
         return data;
     }
 
@@ -330,4 +335,5 @@ public class MinimapData
     public Vector2 PlayerLocation { get; set; }
     public Vector2 HomeLocation { get; set; }
     public List<(Vector2, Color)> MailboxLocations { get; set; } = new List<(Vector2, Color)>();
+    public List<Color> MaiboxesToHighlight { get; set; }
 }

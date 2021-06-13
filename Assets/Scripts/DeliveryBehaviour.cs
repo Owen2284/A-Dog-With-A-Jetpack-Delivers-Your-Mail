@@ -7,11 +7,14 @@ public class DeliveryBehaviour : ConnectableBehaviour
     private GameObject target;
 
     private float timeSinceSpawn = 0;
+    private Renderer rendy;
 
     // Start is called before the first frame update
-    new void Start()
+    protected new void Start()
     {
         base.Start();
+
+        rendy = transform.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -28,11 +31,26 @@ public class DeliveryBehaviour : ConnectableBehaviour
         }
     }
 
+    public Color GetColor()
+    {
+        if (rendy == null)
+        {
+            rendy = transform.GetComponent<Renderer>();
+        }
+
+        return rendy.material.color;
+    }
+
     public void SetTarget(MailboxBehaviour mailbox)
     {
         target = mailbox.gameObject;
 
-        transform.GetComponent<Renderer>().material.color = mailbox.color;
+        if (rendy == null)
+        {
+            rendy = transform.GetComponent<Renderer>();
+        }
+
+        rendy.material.color = mailbox.color;
     }
 
     private void OnCollisionEnter2D(Collision2D t)
