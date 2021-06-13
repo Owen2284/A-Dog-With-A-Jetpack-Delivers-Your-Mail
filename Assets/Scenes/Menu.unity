@@ -2267,23 +2267,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037117, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: xMax
-      value: 20
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037117, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: xMin
-      value: -20
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037117, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: yMax
-      value: 20
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037117, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: yMin
-      value: -20
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037117, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: cloudCount
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2976582591636037119, guid: 2160e0fb7cfd18c4baad3be479d84c62, type: 3}
       propertyPath: m_Name
@@ -2695,7 +2695,7 @@ GameObject:
   - component: {fileID: 1409331182}
   - component: {fileID: 1409331181}
   m_Layer: 0
-  m_Name: pamgaea-by-kevin-macleod-from-filmmusic-io
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3023,7 +3023,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
