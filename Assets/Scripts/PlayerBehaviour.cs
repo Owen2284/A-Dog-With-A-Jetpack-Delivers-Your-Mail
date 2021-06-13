@@ -13,12 +13,20 @@ public class PlayerBehaviour : ConnectableBehaviour
     public GameObject projectile;
     public GameObject smokeTrail;
 
+    public AudioSource smokeTrailSfx;
+
     private float timeToNextShot;
+
+    private bool wasPlacingSmokeLastUpdate;
+
+    private AudioSource bark;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
+
+        bark = GetComponent<AudioSource>();
 
         timeToNextShot = 0;
     }
@@ -41,10 +49,24 @@ public class PlayerBehaviour : ConnectableBehaviour
                 // Place smoke trail if moving
                 if (v != 0 || h != 0)
                 {
-                    Instantiate(smokeTrail, new Vector3(transform.position.x + (0.1f * h), transform.position.y + (-0.5f * v), 2), new Quaternion(0, 0, Random.Range(0, 360), 1));
+                    Instantiate(smokeTrail, new Vector3(transform.position.x + (0.1f * h), transform.position.y + (-0.5f * v), 2), new Quaternion(0, 0, Random.Range(0, 0.99f), 1));
 
                     // Also play sound effect
-                    // TODO
+                    if (!wasPlacingSmokeLastUpdate)
+                    {
+                        smokeTrailSfx.Play();
+                        Debug.Log("Smoke start");
+                    }
+                    wasPlacingSmokeLastUpdate = true;
+                }
+                else
+                {
+                    if (wasPlacingSmokeLastUpdate)
+                    {
+                        smokeTrailSfx.Stop();
+                        Debug.Log("Smoke end");
+                    }
+                    wasPlacingSmokeLastUpdate = false;
                 }
 
                 if (Input.GetMouseButton(0) && timeToNextShot == 0)
@@ -57,6 +79,9 @@ public class PlayerBehaviour : ConnectableBehaviour
 
                     var liveProjectile = Instantiate(projectile, playerPosition, Quaternion.identity);
                     liveProjectile.GetComponent<Rigidbody2D>().velocity = ((worldPosition - playerPosition) / distance) * projectileSpeed;
+
+                    // Play the bark when firing
+                    bark.Play();
 
                     timeToNextShot = timeBetweenShots;
                 }
