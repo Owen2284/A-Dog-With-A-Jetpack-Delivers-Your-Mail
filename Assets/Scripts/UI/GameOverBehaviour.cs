@@ -8,6 +8,7 @@ public class GameOverBehaviour : MonoBehaviour
 {
     public Text deliveriesText;
     public Text scoreText;
+    public AudioSource clickSound;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +26,13 @@ public class GameOverBehaviour : MonoBehaviour
 
     public void ReplayClicked()
     {
+        clickSound.Play();
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
     }
 
     public void MainMenuClicked()
     {
+        clickSound.Play();
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

@@ -48,11 +48,11 @@ public class MinimapBehaviour : MonoBehaviour
 
             if (data.MaiboxesToHighlight.Contains(mailboxColor))
             {
-                mi.sizeDelta = new Vector2(30, 30);
+                mi.sizeDelta = new Vector2(20, 20);
             }
             else
             {
-                mi.sizeDelta = new Vector2(20, 20);
+                mi.sizeDelta = new Vector2(10, 10);
             }
         }
     }

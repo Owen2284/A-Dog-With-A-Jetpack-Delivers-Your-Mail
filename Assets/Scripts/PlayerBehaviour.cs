@@ -89,6 +89,10 @@ public class PlayerBehaviour : ConnectableBehaviour
 
             timeToNextShot = Mathf.Max(timeToNextShot - Time.deltaTime, 0);
         }
+        else
+        {
+            smokeTrailSfx.Stop();
+        }
     }
 
     public void DisableControl()
