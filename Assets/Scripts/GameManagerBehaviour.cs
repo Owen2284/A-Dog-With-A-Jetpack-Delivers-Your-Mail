@@ -247,7 +247,7 @@ public class GameManagerBehaviour : MonoBehaviour
     public void HandleLostDelivery(DeliveryBehaviour delivery)
     {
         // Remove the delivery from the chain
-        delivery.BreakChain(alert: false);
+        delivery.BreakChain();
 
         // Remove delivery from list
         deliveries.Remove(delivery);
@@ -283,7 +283,7 @@ public class GameManagerBehaviour : MonoBehaviour
         return deliveryTotal;
     }
 
-    public void AddAlert(string message, bool positive = true)
+    public void AddAlert(string message)
     {
         // Store alert
         alerts.Add(new AlertItem(message, alertRetentionTime));

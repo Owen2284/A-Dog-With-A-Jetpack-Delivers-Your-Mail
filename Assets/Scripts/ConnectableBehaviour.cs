@@ -7,6 +7,8 @@ public class ConnectableBehaviour : BaseEntityBehaviour
     public int connectionMaxHealth = 3;
     public float invincibilityTime = 1.5f;
 
+    private AudioSource chainBreakSound;
+
     protected int connectionHealth;
     protected float invincibilityTimeRemaining;
 
@@ -26,6 +28,8 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         nextItemLine = GetComponent<LineRenderer>();
         joint = GetComponent<Joint2D>();
         renderer = GetComponent<Renderer>();
+
+        chainBreakSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -93,7 +97,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         return chain;
     }
 
-    public void BreakChain(bool violent = false, bool alert = true)
+    public void BreakChain(bool violent = false, bool first = true)
     {
         // Safely disconnect from the previous item
         if (previousConnectedItem != null)
@@ -107,7 +111,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Carry on down the line
         if (nextConnectedItem != null)
         {
-            nextConnectedItem.BreakChain();
+            nextConnectedItem.BreakChain(violent, false);
         }
 
         // Apply random force if it's a violent break, and send alert
@@ -115,7 +119,11 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         {
             body.AddForce(new Vector2(Random.Range(-10, 11), Random.Range(-10, 11)));
 
-            gameManager.AddAlert("Chain broken!", false);
+            if (first)
+            {
+                gameManager.AddAlert("Chain broken!");
+                chainBreakSound.Play();
+            }
         }
     }
 
@@ -140,7 +148,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Break connections if health zero
         if (connectionHealth <= 0)
         {
-            this.BreakChain(true);
+            this.BreakChain(true, true);
             connectionHealth = 3;
         }
 

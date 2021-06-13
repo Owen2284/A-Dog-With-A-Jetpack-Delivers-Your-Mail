@@ -14,19 +14,17 @@ public class PlayerBehaviour : ConnectableBehaviour
     public GameObject smokeTrail;
 
     public AudioSource smokeTrailSfx;
+    public AudioSource bark;
 
     private float timeToNextShot;
 
     private bool wasPlacingSmokeLastUpdate;
 
-    private AudioSource bark;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-
-        bark = GetComponent<AudioSource>();
 
         timeToNextShot = 0;
     }
