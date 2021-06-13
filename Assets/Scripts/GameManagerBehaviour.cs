@@ -29,6 +29,10 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public List<GameObject> deliveryPrefabs;
 
+    public AudioSource newDeliveriesSound;
+    public AudioSource chainConnectSound;
+    public AudioSource deliveryMadeSound;
+
     private int score;
     private int deliveryTotal;
     private float remainingTime;
@@ -116,6 +120,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
                             // Display effect and play sound
                             // TODO
+                            chainConnectSound.Play();
                             break;
                         }
                     }
@@ -164,6 +169,7 @@ public class GameManagerBehaviour : MonoBehaviour
         if (alert)
         {
             AddAlert("New deliveries available on Mail Island!");
+            newDeliveriesSound.Play();
         }
     }
 
@@ -224,7 +230,8 @@ public class GameManagerBehaviour : MonoBehaviour
             deliveryTotal += 1;
 
             // Display alert
-            AddAlert($"Package delivered: +{scoreEarned}");
+            AddAlert($"Delivery made! +{scoreEarned}");
+            deliveryMadeSound.Play();
         }
 
         // Remove delivery from list
@@ -280,9 +287,6 @@ public class GameManagerBehaviour : MonoBehaviour
     {
         // Store alert
         alerts.Add(new AlertItem(message, alertRetentionTime));
-
-        // Play sound
-        // TODO
     }
 
     public List<string> GetAlerts()
