@@ -319,6 +319,11 @@ public class GameManagerBehaviour : MonoBehaviour
     {
         return gameOver;
     }
+
+    public void TimePenalty(float penalty)
+    {
+        remainingTime = Mathf.Max(remainingTime - penalty, 0);
+    }
 }
 
 public class AlertItem

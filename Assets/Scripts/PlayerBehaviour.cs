@@ -53,7 +53,6 @@ public class PlayerBehaviour : ConnectableBehaviour
                     if (!wasPlacingSmokeLastUpdate)
                     {
                         smokeTrailSfx.Play();
-                        Debug.Log("Smoke start");
                     }
                     wasPlacingSmokeLastUpdate = true;
                 }
@@ -62,11 +61,11 @@ public class PlayerBehaviour : ConnectableBehaviour
                     if (wasPlacingSmokeLastUpdate)
                     {
                         smokeTrailSfx.Stop();
-                        Debug.Log("Smoke end");
                     }
                     wasPlacingSmokeLastUpdate = false;
                 }
 
+                // Projectile firing
                 if (Input.GetMouseButton(0) && timeToNextShot == 0)
                 {
                     Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -82,6 +81,22 @@ public class PlayerBehaviour : ConnectableBehaviour
                     bark.Play();
 
                     timeToNextShot = timeBetweenShots;
+                }
+
+                // Position resetting
+                if (Input.GetKeyDown("r"))
+                {
+                    BreakChain();
+                    transform.position = new Vector3(-8.76f, -1.1f, 0);
+                    gameManager.AddAlert("Reset!");
+                    gameManager.TimePenalty(10f);
+                }
+
+                // Manual disconnecting
+                if (Input.GetKeyDown("tab"))
+                {
+                    BreakChain();
+                    gameManager.AddAlert("Dropping cargo!");
                 }
             }
 

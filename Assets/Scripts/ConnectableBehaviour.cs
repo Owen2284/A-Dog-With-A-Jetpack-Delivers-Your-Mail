@@ -66,8 +66,16 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Link with line
         nextItemLine.enabled = true;
         nextItemLine.SetPositions(new List<Vector3> {
-            this.transform.position,
-            nextConnectedItem.transform.position
+            new Vector3(
+                this.transform.position.x,
+                this.transform.position.y,
+                1
+            ),
+            new Vector3(
+                nextConnectedItem.transform.position.x,
+                nextConnectedItem.transform.position.y,
+                1
+            )
         }.ToArray());
 
         // Link with hinge
@@ -106,6 +114,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
             previousConnectedItem.joint.enabled = false;
             previousConnectedItem.joint.connectedBody = null;
             previousConnectedItem.nextItemLine.enabled = false;
+            previousConnectedItem = null;
         }
 
         // Carry on down the line

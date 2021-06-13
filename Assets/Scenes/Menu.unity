@@ -472,9 +472,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.011000001, y: 0.679443}
-  m_AnchorMax: {x: 0.48379058, y: 0.74}
-  m_AnchoredPosition: {x: 0.5, y: 0.5}
-  m_SizeDelta: {x: -0.2341919, y: 1.0443115}
+  m_AnchorMax: {x: 0.3614419, y: 0.74}
+  m_AnchoredPosition: {x: -0.15002441, y: 0.5}
+  m_SizeDelta: {x: -1.5200043, y: 1.0443001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245187907
 MonoBehaviour:
@@ -706,8 +706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.51500005, y: 0.037288595}
   m_AnchorMax: {x: 0.98579067, y: 0.64044297}
-  m_AnchoredPosition: {x: 0, y: -1.039978}
-  m_SizeDelta: {x: 0.76000977, y: 4.130005}
+  m_AnchoredPosition: {x: 153.93512, y: -1.5524902}
+  m_SizeDelta: {x: -307.1099, y: 3.105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &306800466
 MonoBehaviour:
@@ -731,7 +731,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -742,7 +742,40 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TODO
+  m_Text: '"8-Bit explosion" by Prof.Mudkip
+
+    Link: https://freesound.org/s/386862/
+
+    License:
+    http://creativecommons.org/licenses/by/3.0/
+
+
+
+    "UI Click" by EminYILDIRIM
+
+    Link:
+    https://freesound.org/s/536108/
+
+    License: http://creativecommons.org/licenses/by/3.0/
+
+
+
+    "Balloon
+    Pop / Christmas cracker / Confetti Cannon" by Breviceps
+
+    Link: https://freesound.org/s/458398/
+
+    License:
+    http://creativecommons.org/licenses/by/3.0/
+
+
+
+    "Beep 4" by Eponn
+
+    Link:
+    https://freesound.org/s/528862/
+
+    License: http://creativecommons.org/licenses/by/3.0/'
 --- !u!222 &306800467
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -768,7 +801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &317319582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -787,6 +820,7 @@ RectTransform:
   - {fileID: 790416036}
   - {fileID: 306800465}
   - {fileID: 1633171481}
+  - {fileID: 1363037465}
   m_Father: {fileID: 767315517}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1169,10 +1203,10 @@ RectTransform:
   m_Father: {fileID: 1885056520}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6886716, y: 0.71800005}
-  m_AnchorMax: {x: 0.8002141, y: 0.7888658}
-  m_AnchoredPosition: {x: 1, y: 0.6000061}
-  m_SizeDelta: {x: 1.4528809, y: 0.2321167}
+  m_AnchorMin: {x: 0.6893285, y: 0.8378658}
+  m_AnchorMax: {x: 0.80188566, y: 0.90986586}
+  m_AnchoredPosition: {x: -1, y: -0.5}
+  m_SizeDelta: {x: -0.54711914, y: -0.7678833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717236577
 MonoBehaviour:
@@ -1452,9 +1486,9 @@ RectTransform:
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.013790568, y: 0.037288595}
-  m_AnchorMax: {x: 0.48379058, y: 0.64044297}
-  m_AnchoredPosition: {x: -1.5, y: -1.039978}
-  m_SizeDelta: {x: 1.7700195, y: 4.130005}
+  m_AnchorMax: {x: 0.3614419, y: 0.64044297}
+  m_AnchoredPosition: {x: -1.5372314, y: -1.5524902}
+  m_SizeDelta: {x: 1.6956024, y: 3.1049995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790416037
 MonoBehaviour:
@@ -1696,9 +1730,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.53678596, y: 0.25755703}
-  m_AnchorMax: {x: 0.9521144, y: 0.67659736}
-  m_AnchoredPosition: {x: 0.79296875, y: 0.24279785}
-  m_SizeDelta: {x: 0.41411972, y: 0.49169922}
+  m_AnchorMax: {x: 0.9526716, y: 0.8081544}
+  m_AnchoredPosition: {x: 0.29296875, y: 1.1228943}
+  m_SizeDelta: {x: -0.58588, y: 2.2458}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &883569560
 MonoBehaviour:
@@ -1744,7 +1778,14 @@ MonoBehaviour:
 
 
     Scroll mouse wheel
-    - Zoom in / out'
+    - Zoom in / out
+
+
+    Tab - Detach all deliveries
+
+
+    R - Reset position (Reduces
+    remaining time!)'
 --- !u!222 &883569561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2558,6 +2599,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325055020}
   m_CullTransparentMesh: 1
+--- !u!1 &1363037464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363037465}
+  - component: {fileID: 1363037467}
+  - component: {fileID: 1363037466}
+  m_Layer: 5
+  m_Name: Text (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1363037465
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363037464}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 317319582}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.51500005, y: 0.037288595}
+  m_AnchorMax: {x: 0.98579067, y: 0.64044297}
+  m_AnchoredPosition: {x: -403.0368, y: -2.0650024}
+  m_SizeDelta: {x: -324.2136, y: 4.13}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1363037466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363037464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\"Dog_Bark.wav\" by michael_grinnell\r\nLink: https://freesound.org/s/464400/\r\nLicense:
+    http://creativecommons.org/licenses/by/3.0/\r\n\r\n\"locking a door_01.wav\"
+    by Dymewiz\r\nLink: https://freesound.org/s/131024/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r\nModifications:
+    Trimmed empty sound at end\r\n\r\n\"snapping-chain\" by CosmicEmbers\r\nLink:
+    https://freesound.org/s/161650/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r\nModifications:
+    Trimmed empty sound at start/end\r\n\r\n\"FuiteDeGaz.wav\" by davidou\r\nLink:
+    https://freesound.org/s/88461/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r"
+--- !u!222 &1363037467
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363037464}
+  m_CullTransparentMesh: 1
 --- !u!1 &1409331180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,10 +3399,10 @@ RectTransform:
   m_Father: {fileID: 317319582}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.40420946, y: 0.037288595}
-  m_AnchorMax: {x: 0.5954419, y: 0.106731564}
-  m_AnchoredPosition: {x: 0.5, y: 0.16998291}
-  m_SizeDelta: {x: -1.3035889, y: 6.548401}
+  m_AnchorMin: {x: 0.09055812, y: 0.037288595}
+  m_AnchorMax: {x: 0.27800003, y: 0.11457719}
+  m_AnchoredPosition: {x: 3.4500732, y: 0.27416992}
+  m_SizeDelta: {x: 5.696411, y: 0.5484009}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633171482
 MonoBehaviour:
@@ -3687,10 +3813,10 @@ RectTransform:
   m_Father: {fileID: 317319582}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.51500005, y: 0.679443}
+  m_AnchorMin: {x: 0.3798838, y: 0.679443}
   m_AnchorMax: {x: 0.98579067, y: 0.74}
-  m_AnchoredPosition: {x: 0, y: 0.5}
-  m_SizeDelta: {x: 0.76586914, y: 1.0443115}
+  m_AnchoredPosition: {x: 0.77279663, y: 0.51104736}
+  m_SizeDelta: {x: -0.7798004, y: 1.0221996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1833873888
 MonoBehaviour:
@@ -4016,7 +4142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1885056520
 RectTransform:
   m_ObjectHideFlags: 0
