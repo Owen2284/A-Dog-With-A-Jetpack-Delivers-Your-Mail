@@ -18,8 +18,10 @@ public class BirdBehaviour : BaseEnemyBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected new void Update()
     {
+        base.Update();
+
         var distanceToPlayer = Vector2.Distance(
             this.transform.position,
             player.transform.position

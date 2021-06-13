@@ -55,6 +55,8 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         {
             renderer.enabled = true;
         }
+
+        NormaliseVelocityToMax();
     }
 
     public void SetNextConnection(ConnectableBehaviour that)

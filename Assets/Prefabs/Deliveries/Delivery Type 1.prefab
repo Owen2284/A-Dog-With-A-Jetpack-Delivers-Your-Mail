@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cba2d55c1f5e640bbc0f2497af84c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 90
   connectionMaxHealth: 3
   invincibilityTime: 1.5
 --- !u!120 &3281578139577457034

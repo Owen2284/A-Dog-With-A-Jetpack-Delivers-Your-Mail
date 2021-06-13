@@ -18,9 +18,9 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-
+        NormaliseVelocityToMax();
     }
 
     protected void OnCollisionEnter2D(Collision2D t)

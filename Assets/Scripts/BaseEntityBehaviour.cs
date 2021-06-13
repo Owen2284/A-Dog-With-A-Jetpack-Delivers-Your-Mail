@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseEntityBehaviour : MonoBehaviour
 {
+    public float maxSpeed = 35;
     protected Rigidbody2D body;
     protected GameManagerBehaviour gameManager;
 
@@ -24,5 +25,13 @@ public class BaseEntityBehaviour : MonoBehaviour
     {
         var pushVector = (transform.position - point) * force * body.mass;
         body.AddForce(pushVector);
+    }
+
+    public void NormaliseVelocityToMax()
+    {
+        if (body.velocity.magnitude > maxSpeed)
+        {
+            body.velocity = body.velocity.normalized * maxSpeed;
+        }
     }
 }
