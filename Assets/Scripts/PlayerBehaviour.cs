@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : ConnectableBehaviour
 {
+    public float moveSpeed = 10;
     public float timeBetweenShots = 0.75f;
     public float projectileSpeed = 10f;
 
@@ -33,8 +34,8 @@ public class PlayerBehaviour : ConnectableBehaviour
                 float v = Input.GetAxisRaw("Vertical");
                 float h = Input.GetAxisRaw("Horizontal");
 
-                body.AddForce(transform.up * v * body.mass * 10);
-                body.AddForce(transform.right * h * body.mass * 10);
+                body.AddForce(transform.up * v * body.mass * moveSpeed);
+                body.AddForce(transform.right * h * body.mass * moveSpeed);
 
                 if (Input.GetMouseButton(0) && timeToNextShot == 0)
                 {
