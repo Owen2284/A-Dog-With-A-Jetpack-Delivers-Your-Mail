@@ -18,7 +18,11 @@ public class PlayerBehaviour : ConnectableBehaviour
     public AudioSource smokeTrailSfx;
     public AudioSource bark;
 
+    public SpriteRenderer jetpack;
+
     private float timeToNextShot;
+
+    private SpriteRenderer spriteRenderer;
 
     private bool wasPlacingSmokeLastUpdate;
 
@@ -27,6 +31,8 @@ public class PlayerBehaviour : ConnectableBehaviour
     new void Start()
     {
         base.Start();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         timeToNextShot = 0;
 
@@ -67,6 +73,26 @@ public class PlayerBehaviour : ConnectableBehaviour
                         smokeTrailSfx.Stop();
                     }
                     wasPlacingSmokeLastUpdate = false;
+                }
+
+                // Flip dog
+                if (h > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (h < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                if (v > 0)
+                {
+                    spriteRenderer.flipY = false;
+                    jetpack.flipY = false;
+                }
+                else if (v < 0)
+                {
+                    spriteRenderer.flipY = true;
+                    jetpack.flipY = true;
                 }
 
                 // Projectile firing
