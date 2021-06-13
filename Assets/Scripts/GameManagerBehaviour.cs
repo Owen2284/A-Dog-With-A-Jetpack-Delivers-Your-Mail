@@ -7,7 +7,7 @@ public class GameManagerBehaviour : MonoBehaviour
 {
     public int initialDeliveryCount = 3;
 
-    public int connectionDistance = 1;
+    public float connectionDistance = 1;
     public int maxChainLength = 5;
 
     // TODO: Move to camera script?
@@ -43,11 +43,16 @@ public class GameManagerBehaviour : MonoBehaviour
 
     private List<AlertItem> alerts = new List<AlertItem>();
 
+    private LineRenderer lineRenderer;
+
     private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Find components
+        lineRenderer = GetComponent<LineRenderer>();
+
         // Find player
         player = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
 
@@ -89,42 +94,47 @@ public class GameManagerBehaviour : MonoBehaviour
         // If game isn't over, run systems as usual
         if (!gameOver)
         {
-            // Get the item currently at the end of the chain of items
-            var chain = player.GetChain();
-            var endOfChain = chain.Last();
+            // Link processing
+            var potentialNextLink = GetPotentialNextLink();
 
-            // Check to see if the connect key has been hit
-            if (Input.GetKeyDown("space"))
+            // Show notifier on dog if potential link present
+            player.ShowExclaim(potentialNextLink != null);
+
+            if (potentialNextLink != null)
             {
-                if (chain.Count <= maxChainLength)
+                // Get chain and current end of chain
+                var chain = player.GetChain();
+                var endOfChain = chain.Last();
+
+                // Render preview line
+                lineRenderer.enabled = true;
+                lineRenderer.SetPositions(new List<Vector3> {
+                    new Vector3(
+                        endOfChain.transform.position.x,
+                        endOfChain.transform.position.y,
+                        -1
+                    ),
+                    new Vector3(
+                        potentialNextLink.transform.position.x,
+                        potentialNextLink.transform.position.y,
+                        -1
+                    )
+                }.ToArray());
+
+                // Check to see if the connect key has been hit
+                if (Input.GetKeyDown("space"))
                 {
-                    foreach (var delivery in deliveries)
-                    {
-                        // Skip if already in chain
-                        if (chain.Contains(delivery))
-                        {
-                            continue;
-                        }
+                    // If it has, then make connection
+                    endOfChain.SetNextConnection(potentialNextLink);
 
-                        // Determine distance to delivery
-                        var distance = Vector2.Distance(
-                            endOfChain.transform.position,
-                            delivery.transform.position
-                        );
-
-                        // If close enough, connect
-                        if (distance < connectionDistance)
-                        {
-                            // Make connection
-                            endOfChain.SetNextConnection(delivery);
-
-                            // Display effect and play sound
-                            // TODO
-                            chainConnectSound.Play();
-                            break;
-                        }
-                    }
+                    // Play sound
+                    chainConnectSound.Play();
                 }
+            }
+            else
+            {
+                // Hide line renderer when no preview to display
+                lineRenderer.enabled = false;
             }
 
             // Handle camera zoom
@@ -197,7 +207,7 @@ public class GameManagerBehaviour : MonoBehaviour
                         flockPosition
                     );
 
-                    if (distanceToTerrain < 16)
+                    if (distanceToTerrain < 20)
                     {
                         notNearTerrain = false;
                     }
@@ -323,6 +333,47 @@ public class GameManagerBehaviour : MonoBehaviour
     public void TimePenalty(float penalty)
     {
         remainingTime = Mathf.Max(remainingTime - penalty, 0);
+    }
+
+    public DeliveryBehaviour GetPotentialNextLink()
+    {
+        // Get the item currently at the end of the chain of items
+        var chain = player.GetChain();
+        var endOfChain = chain.Last();
+
+        // Return null if chain full
+        if (chain.Count > maxChainLength)
+        {
+            return null;
+        }
+
+        // Find closest delivery to end of chain
+        DeliveryBehaviour closestSoFar = null;
+        float closestDistance = connectionDistance + 1f;
+        foreach (var delivery in deliveries)
+        {
+            // Skip if already in chain
+            if (chain.Contains(delivery))
+            {
+                continue;
+            }
+
+            // Determine distance to delivery
+            var distance = Vector2.Distance(
+                endOfChain.transform.position,
+                delivery.transform.position
+            );
+
+            // If close enough, and closest one so far, then save in running variables
+            if (distance < connectionDistance && distance < closestDistance)
+            {
+                closestSoFar = delivery;
+                closestDistance = distance;
+            }
+        }
+
+        // Return the closest delivery that's within range (if none are, null is returned)
+        return closestSoFar;
     }
 }
 

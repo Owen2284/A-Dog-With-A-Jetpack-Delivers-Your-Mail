@@ -13,6 +13,8 @@ public class PlayerBehaviour : ConnectableBehaviour
     public GameObject projectile;
     public GameObject smokeTrail;
 
+    public GameObject exclaim;
+
     public AudioSource smokeTrailSfx;
     public AudioSource bark;
 
@@ -27,6 +29,8 @@ public class PlayerBehaviour : ConnectableBehaviour
         base.Start();
 
         timeToNextShot = 0;
+
+        ShowExclaim(false);
     }
 
     // Update is called once per frame
@@ -112,5 +116,10 @@ public class PlayerBehaviour : ConnectableBehaviour
     {
         // Game is over, so prevent control from here on out
         preventControl = true;
+    }
+
+    public void ShowExclaim(bool show)
+    {
+        exclaim.SetActive(show);
     }
 }
