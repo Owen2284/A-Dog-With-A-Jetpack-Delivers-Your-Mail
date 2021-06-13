@@ -20,6 +20,12 @@ public class DeliveryBehaviour : ConnectableBehaviour
         base.Update();
 
         timeSinceSpawn += Time.deltaTime;
+
+        // Remove if fallen off the map
+        if (transform.position.y < -400)
+        {
+            gameManager.HandleLostDelivery(this);
+        }
     }
 
     public void SetTarget(MailboxBehaviour mailbox)

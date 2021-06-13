@@ -93,7 +93,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         return chain;
     }
 
-    public void BreakChain(bool violent = false)
+    public void BreakChain(bool violent = false, bool alert = true)
     {
         // Safely disconnect from the previous item
         if (previousConnectedItem != null)

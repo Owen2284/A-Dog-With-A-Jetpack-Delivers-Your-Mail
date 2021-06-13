@@ -237,6 +237,25 @@ public class GameManagerBehaviour : MonoBehaviour
         GenerateFlocks(flocksPerDelivery);
     }
 
+    public void HandleLostDelivery(DeliveryBehaviour delivery)
+    {
+        // Remove the delivery from the chain
+        delivery.BreakChain(alert: false);
+
+        // Remove delivery from list
+        deliveries.Remove(delivery);
+
+        // Destroy delivery
+        Destroy(delivery.gameObject);
+
+        // Send alert if not already present
+        var alertText = "Delivery lost...";
+        if (!alerts.Exists(x => x.Message == alertText))
+        {
+            AddAlert(alertText);
+        }
+    }
+
     public PlayerBehaviour GetPlayer()
     {
         return player;
