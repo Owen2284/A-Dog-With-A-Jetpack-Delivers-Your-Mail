@@ -11,6 +11,7 @@ public class PlayerBehaviour : ConnectableBehaviour
     private bool preventControl = false;
 
     public GameObject projectile;
+    public GameObject smokeTrail;
 
     private float timeToNextShot;
 
@@ -36,6 +37,15 @@ public class PlayerBehaviour : ConnectableBehaviour
 
                 body.AddForce(transform.up * v * body.mass * moveSpeed);
                 body.AddForce(transform.right * h * body.mass * moveSpeed);
+
+                // Place smoke trail if moving
+                if (v != 0 || h != 0)
+                {
+                    Instantiate(smokeTrail, new Vector3(transform.position.x + (0.1f * h), transform.position.y + (-0.5f * v), 2), new Quaternion(0, 0, Random.Range(0, 360), 1));
+
+                    // Also play sound effect
+                    // TODO
+                }
 
                 if (Input.GetMouseButton(0) && timeToNextShot == 0)
                 {

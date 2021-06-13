@@ -5620,9 +5620,11 @@ MonoBehaviour:
   connectionMaxHealth: 3
   invincibilityTime: 1.5
   moveSpeed: 23
+  timeBetweenSmoke: 0.02
   timeBetweenShots: 0.75
   projectileSpeed: 10
   projectile: {fileID: 7925311002264915119, guid: 11f0014262fe1584bb9ac7541a1377c2, type: 3}
+  smokeTrail: {fileID: 5392928425053683448, guid: 2a4ce64462201bd4ea018b3eda922011, type: 3}
 --- !u!70 &1029565194
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
