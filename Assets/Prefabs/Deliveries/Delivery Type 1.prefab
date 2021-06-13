@@ -268,7 +268,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
   m_Distance: 1
-  m_DampingRatio: 1
+  m_DampingRatio: 0.01
   m_Frequency: 1
 --- !u!82 &-4655537221400668593
 AudioSource:
