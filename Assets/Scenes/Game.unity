@@ -3426,8 +3426,8 @@ MonoBehaviour:
   initialDeliveryCount: 5
   connectionDistance: 3
   maxChainLength: 5
-  cameraMinZoom: 2
-  cameraMaxZoom: 16
+  cameraMinZoom: 3
+  cameraMaxZoom: 11
   gameplayArea: {x: 200, y: 120}
   flockTypes:
   - {fileID: 4727665286170208092, guid: ff0752787a39b0043be065417dfb3900, type: 3}

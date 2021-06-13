@@ -105,7 +105,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                     var distance = Vector2.Distance(worldPosition, playerPosition);
 
                     var liveProjectile = Instantiate(projectile, playerPosition, Quaternion.identity);
-                    liveProjectile.GetComponent<Rigidbody2D>().velocity = ((worldPosition - playerPosition) / distance) * projectileSpeed;
+                    liveProjectile.GetComponent<Rigidbody2D>().velocity = ((worldPosition - playerPosition) / distance) * projectileSpeed + body.velocity;
 
                     // Play the bark when firing
                     bark.Play();

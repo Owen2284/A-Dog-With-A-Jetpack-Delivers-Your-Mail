@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 145799683}
   - component: {fileID: 145799682}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RandomMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1453,6 +1453,7 @@ MonoBehaviour:
   playPanel: {fileID: 1885056519}
   creditsPanel: {fileID: 317319581}
   clickSound: {fileID: 1846000912}
+  randomMessageText: {fileID: 145799682}
 --- !u!1 &790416035
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,7 +4218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1885056520
 RectTransform:
   m_ObjectHideFlags: 0
