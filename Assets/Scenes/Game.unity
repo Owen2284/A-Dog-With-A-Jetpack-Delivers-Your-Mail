@@ -6475,7 +6475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db0af9f4acc40e47981b6e8069882a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 450
+  maxSpeed: 45
   connectionMaxHealth: 3
   invincibilityTime: 1.5
   moveSpeed: 23
