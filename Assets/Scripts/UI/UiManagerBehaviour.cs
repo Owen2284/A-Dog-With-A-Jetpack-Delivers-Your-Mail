@@ -20,6 +20,8 @@ public class UiManagerBehaviour : MonoBehaviour
         minimap = transform.Find("Minimap Panel").gameObject.GetComponent<MinimapBehaviour>();
         timeScore = transform.Find("TimeScore Panel").gameObject.GetComponent<TimeScoreBehaviour>();
         gameOver = transform.Find("GameOver Panel").gameObject.GetComponent<GameOverBehaviour>();
+
+        gameOver.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
