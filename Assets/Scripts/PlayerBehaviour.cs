@@ -7,6 +7,7 @@ public class PlayerBehaviour : ConnectableBehaviour
     public float moveSpeed = 10;
     public float timeBetweenShots = 0.75f;
     public float projectileSpeed = 10f;
+    public float resetTimePenalty = 5f;
 
     private bool preventControl = false;
 
@@ -119,7 +120,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                     BreakChain();
                     transform.position = new Vector3(-8.76f, -1.1f, 0);
                     gameManager.AddAlert("Reset!");
-                    gameManager.TimePenalty(10f);
+                    gameManager.TimePenalty(resetTimePenalty);
                 }
 
                 // Manual disconnecting

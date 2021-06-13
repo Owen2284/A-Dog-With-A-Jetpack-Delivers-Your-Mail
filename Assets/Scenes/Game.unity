@@ -3435,7 +3435,7 @@ MonoBehaviour:
   initialFlocks: 6
   flocksPerDelivery: 2
   initialTime: 60
-  bonusTimePerDelivery: 15
+  bonusTimePerDelivery: 12.5
   timeBetweenNewDeliveries: 50
   alertRetentionTime: 5
   deliveryPrefabs:
@@ -6478,7 +6478,7 @@ MonoBehaviour:
   maxSpeed: 45
   connectionMaxHealth: 3
   invincibilityTime: 1.5
-  moveSpeed: 23
+  moveSpeed: 26
   timeBetweenShots: 0.6
   projectileSpeed: 20
   projectile: {fileID: 7925311002264915119, guid: 11f0014262fe1584bb9ac7541a1377c2, type: 3}
