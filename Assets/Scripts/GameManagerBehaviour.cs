@@ -10,10 +10,6 @@ public class GameManagerBehaviour : MonoBehaviour
     public float connectionDistance = 1;
     public int maxChainLength = 5;
 
-    // TODO: Move to camera script?
-    public float cameraMinZoom = 2;
-    public float cameraMaxZoom = 16;
-
     public Vector2 gameplayArea = new Vector2(240, 150);
 
     public List<GameObject> flockTypes = new List<GameObject>();
@@ -136,9 +132,6 @@ public class GameManagerBehaviour : MonoBehaviour
                 // Hide line renderer when no preview to display
                 lineRenderer.enabled = false;
             }
-
-            // Handle camera zoom
-            Camera.main.orthographicSize = Mathf.Min(Mathf.Max(Camera.main.orthographicSize - Input.mouseScrollDelta.y, cameraMinZoom), cameraMaxZoom);
 
             // Create new deliveries when timer expires / when no deliveries remain
             if (timeUntilNewDeliveries <= 0 || deliveries.Count == 0)
