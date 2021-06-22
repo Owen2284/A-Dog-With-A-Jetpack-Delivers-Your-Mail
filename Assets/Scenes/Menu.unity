@@ -313,10 +313,10 @@ RectTransform:
   m_Father: {fileID: 767315517}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39289597, y: 0.6797038}
-  m_AnchorMax: {x: 0.606, y: 0.7314445}
-  m_AnchoredPosition: {x: -0.5, y: -1}
-  m_SizeDelta: {x: 2.8548584, y: 4.3963013}
+  m_AnchorMin: {x: 0.03172917, y: 0.6667778}
+  m_AnchorMax: {x: 0.966125, y: 0.7314445}
+  m_AnchoredPosition: {x: 1.7797241, y: 2.09906}
+  m_SizeDelta: {x: 1.1500244, y: -1.8017998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &145799682
 MonoBehaviour:
@@ -867,6 +867,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317319581}
   m_CullTransparentMesh: 1
+--- !u!1 &348275376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348275377}
+  - component: {fileID: 348275379}
+  - component: {fileID: 348275378}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &348275377
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348275376}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 767315517}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.7244792, y: 0}
+  m_AnchorMax: {x: 0.99375004, y: 0.04877778}
+  m_AnchoredPosition: {x: -1, y: 0.21398926}
+  m_SizeDelta: {x: -0.080322266, y: 0.2679367}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &348275378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348275376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 22
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Version 1.1
+--- !u!222 &348275379
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348275376}
+  m_CullTransparentMesh: 1
 --- !u!1 &473906072
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,10 +1053,10 @@ RectTransform:
   m_Father: {fileID: 767315517}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.016, y: 0}
-  m_AnchorMax: {x: 0.293, y: 0.05455556}
-  m_AnchoredPosition: {x: -0.5, y: -2.8660278}
-  m_SizeDelta: {x: -14.080307, y: -5.7320604}
+  m_AnchorMin: {x: 0.0105208345, y: 0}
+  m_AnchorMax: {x: 0.2784792, y: 0.04877778}
+  m_AnchoredPosition: {x: -1.5, y: 3.0000305}
+  m_SizeDelta: {x: 2.919693, y: 0.26793957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582242786
 MonoBehaviour:
@@ -1429,6 +1508,7 @@ RectTransform:
   - {fileID: 1885056520}
   - {fileID: 317319582}
   - {fileID: 582242785}
+  - {fileID: 348275377}
   - {fileID: 1846000913}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1454,6 +1534,14 @@ MonoBehaviour:
   creditsPanel: {fileID: 317319581}
   clickSound: {fileID: 1846000912}
   randomMessageText: {fileID: 145799682}
+  messages:
+  - Y'know, the usual
+  - Just like the ol' days
+  - ...what?
+  - How whimsical!
+  - God, I wish I was that dog
+  - Game of the Past 2 days of my Life edition
+  - Is that meant to be a dog?
 --- !u!1 &790416035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,10 +3902,10 @@ RectTransform:
   m_Father: {fileID: 767315517}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.7935626, y: 0.024}
-  m_AnchorMax: {x: 0.9858334, y: 0.2232593}
-  m_AnchoredPosition: {x: -0.6533203, y: -1.9699707}
-  m_SizeDelta: {x: -2.118164, y: 0.8399658}
+  m_AnchorMin: {x: 0.7944792, y: 0.162}
+  m_AnchorMax: {x: 0.9858334, y: 0.36218524}
+  m_AnchoredPosition: {x: 0.05908203, y: 0.5}
+  m_SizeDelta: {x: -0.11816406, y: -0.16003418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732299297
 MonoBehaviour:
@@ -4194,7 +4282,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767315517}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

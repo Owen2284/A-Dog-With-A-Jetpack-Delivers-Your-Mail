@@ -10,20 +10,13 @@ public class MainMenuBehaviour : MonoBehaviour
     public GameObject creditsPanel;
     public AudioSource clickSound;
     public Text randomMessageText;
+    public List<string> messages;
 
     // Start is called before the first frame update
     void Start()
     {
         playPanel.SetActive(false);
         creditsPanel.SetActive(false);
-
-        var messages = new List<string>() {
-            "Y'know, the usual",
-            "Just like the ol' days",
-            "...what?",
-            "How whimsical!",
-            "God, I wish I was that dog"
-        };
 
         var selectedMessage = messages[Random.Range(0, messages.Count)];
         randomMessageText.text = $"({selectedMessage})";
