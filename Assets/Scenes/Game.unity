@@ -6735,6 +6735,7 @@ MonoBehaviour:
   maxSpeed: 45
   connectionMaxHealth: 3
   invincibilityTime: 1.5
+  linkEffectPrefab: {fileID: 4105539113903109416, guid: dea907c6ed3acd241820b2addfa4a801, type: 3}
   moveSpeed: 26
   timeBetweenShots: 0.6
   projectileSpeed: 20

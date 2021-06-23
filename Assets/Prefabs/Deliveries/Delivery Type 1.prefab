@@ -151,6 +151,7 @@ MonoBehaviour:
   maxSpeed: 60
   connectionMaxHealth: 3
   invincibilityTime: 1.5
+  linkEffectPrefab: {fileID: 4105539113903109416, guid: dea907c6ed3acd241820b2addfa4a801, type: 3}
 --- !u!120 &3281578139577457034
 LineRenderer:
   m_ObjectHideFlags: 0

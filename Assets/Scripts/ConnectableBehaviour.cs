@@ -6,6 +6,7 @@ public class ConnectableBehaviour : BaseEntityBehaviour
 {
     public int connectionMaxHealth = 3;
     public float invincibilityTime = 1.5f;
+    public GameObject linkEffectPrefab;
 
     private AudioSource chainBreakSound;
 
@@ -86,6 +87,9 @@ public class ConnectableBehaviour : BaseEntityBehaviour
 
         // Reset target connection health
         that.connectionHealth = that.connectionMaxHealth;
+
+        // Play link effect
+        that.SpawnEffect(Color.white);
     }
 
     public int GetHealth()
@@ -136,6 +140,9 @@ public class ConnectableBehaviour : BaseEntityBehaviour
                 chainBreakSound.Play();
             }
         }
+
+        // Play effect
+        SpawnEffect(Color.gray);
     }
 
     public void TakeDamage(BaseEnemyBehaviour enemy, Collision2D collision)
@@ -165,5 +172,14 @@ public class ConnectableBehaviour : BaseEntityBehaviour
 
         // Trigger invincibility
         invincibilityTimeRemaining = invincibilityTime;
+    }
+
+    private void SpawnEffect(Color color)
+    {
+        var linkEffect = Instantiate(linkEffectPrefab, this.transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+        var effMain = linkEffect.main;
+        effMain.startColor = color;
+        linkEffect.GetComponent<EffectBehaviour>().target = this.gameObject;
+        linkEffect.Play();
     }
 }
