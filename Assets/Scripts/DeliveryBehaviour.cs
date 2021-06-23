@@ -41,6 +41,11 @@ public class DeliveryBehaviour : ConnectableBehaviour
         return rendy.material.color;
     }
 
+    public bool HasTarget(MailboxBehaviour mailbox)
+    {
+        return target == mailbox.gameObject;
+    }
+
     public void SetTarget(MailboxBehaviour mailbox)
     {
         target = mailbox.gameObject;
@@ -51,14 +56,6 @@ public class DeliveryBehaviour : ConnectableBehaviour
         }
 
         rendy.material.color = mailbox.color;
-    }
-
-    private void OnCollisionEnter2D(Collision2D t)
-    {
-        if (t.gameObject.tag == "Mailbox" && target == t.gameObject)
-        {
-            gameManager.Deliver(this);
-        }
     }
 
     public int GetScoreMultiplier()
