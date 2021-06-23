@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3281578139577457038}
   - component: {fileID: 3281578139577457034}
   - component: {fileID: -4655537221400668593}
-  - component: {fileID: 3479660094359457265}
+  - component: {fileID: -8562194101261334189}
   m_Layer: 7
   m_Name: Delivery Type 1
   m_TagString: Delivery
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cba2d55c1f5e640bbc0f2497af84c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 45
+  maxSpeed: 60
   connectionMaxHealth: 3
   invincibilityTime: 1.5
 --- !u!120 &3281578139577457034
@@ -346,8 +346,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!233 &3479660094359457265
-HingeJoint2D:
+--- !u!231 &-8562194101261334189
+SpringJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -359,14 +359,10 @@ HingeJoint2D:
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+  m_AutoConfigureDistance: 0
+  m_Distance: 1
+  m_DampingRatio: 1
+  m_Frequency: 3
