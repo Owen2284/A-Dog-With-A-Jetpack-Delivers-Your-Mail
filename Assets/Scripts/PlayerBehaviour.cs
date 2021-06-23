@@ -109,6 +109,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                     liveProjectile.GetComponent<Rigidbody2D>().velocity = ((worldPosition - playerPosition) / distance) * projectileSpeed + body.velocity;
 
                     // Play the bark when firing
+                    bark.pitch = Mathf.Max(Random.Range(0.0f, 1.8f), 1f);
                     bark.Play();
 
                     timeToNextShot = timeBetweenShots;
