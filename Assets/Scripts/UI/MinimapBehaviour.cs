@@ -8,6 +8,7 @@ public class MinimapBehaviour : MonoBehaviour
     public RectTransform playerIcon;
     public RectTransform homeIcon;
     public RectTransform mailboxIcon;
+    public RectTransform cameraBoundsRectangle;
 
     public float panelWidth = 260;
     public float panelHeight = 130;
@@ -22,7 +23,7 @@ public class MinimapBehaviour : MonoBehaviour
 
     public void UpdateMinimap(MinimapData data)
     {
-        // First time only, create mailbox icons
+        // First time only, create mailbox icons, and position home icon
         if (mailboxIcons == null)
         {
             mailboxIcons = new List<RectTransform>();
@@ -36,10 +37,14 @@ public class MinimapBehaviour : MonoBehaviour
             }
 
             Destroy(mailboxIcon.gameObject);
+
+            homeIcon.anchoredPosition = ScalePosition(data.HomeLocation);
         }
 
-        // Update player position
+        // Update player and camera bounds size
         playerIcon.anchoredPosition = ScalePosition(data.PlayerLocation);
+        cameraBoundsRectangle.offsetMax = data.CameraOffsetMax;
+        cameraBoundsRectangle.offsetMin = data.CameraOffsetMin;
 
         // Highlight mailboxes if player is carrying a delivery for it
         foreach (var mi in mailboxIcons)

@@ -315,6 +315,12 @@ public class GameManagerBehaviour : MonoBehaviour
 
         data.MaiboxesToHighlight = chain.Select(x => ((DeliveryBehaviour)x).GetColor()).ToList();
 
+        float halfHeight = Camera.main.orthographicSize;
+        float halfWidth = Camera.main.aspect * halfHeight;
+
+        data.CameraOffsetMax = new Vector2(halfWidth, halfHeight);
+        data.CameraOffsetMin = new Vector2(-halfWidth, -halfHeight);
+
         return data;
     }
 
@@ -389,4 +395,6 @@ public class MinimapData
     public Vector2 HomeLocation { get; set; }
     public List<(Vector2, Color)> MailboxLocations { get; set; } = new List<(Vector2, Color)>();
     public List<Color> MaiboxesToHighlight { get; set; }
+    public Vector2 CameraOffsetMax { get; set; }
+    public Vector2 CameraOffsetMin { get; set; }
 }
