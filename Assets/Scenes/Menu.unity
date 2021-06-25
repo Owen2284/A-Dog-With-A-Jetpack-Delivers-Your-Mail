@@ -1875,7 +1875,10 @@ MonoBehaviour:
 
 
     R - Reset position (Reduces
-    remaining time!)'
+    remaining time!)
+
+
+    Esc - Pause the game'
 --- !u!222 &883569561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4307,7 +4310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1885056520
 RectTransform:
   m_ObjectHideFlags: 0

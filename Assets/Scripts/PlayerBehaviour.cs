@@ -97,7 +97,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                 }
 
                 // Projectile firing
-                if (Input.GetMouseButton(0) && timeToNextShot == 0)
+                if (Input.GetMouseButton(0) && timeToNextShot == 0 && !gameManager.IsPaused())
                 {
                     Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
                     Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -116,7 +116,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                 }
 
                 // Position resetting
-                if (Input.GetKeyDown("r"))
+                if (Input.GetKeyDown("r") && !gameManager.IsPaused())
                 {
                     BreakChain();
                     transform.position = new Vector3(-8.76f, -1.1f, 0);
@@ -125,7 +125,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                 }
 
                 // Manual disconnecting
-                if (Input.GetKeyDown("tab"))
+                if (Input.GetKeyDown("tab") && !gameManager.IsPaused())
                 {
                     BreakChain();
                     gameManager.AddAlert("Dropping cargo!");

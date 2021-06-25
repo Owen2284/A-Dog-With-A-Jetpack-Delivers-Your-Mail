@@ -107,6 +107,12 @@ public class GameManagerBehaviour : MonoBehaviour
         // If game isn't over, run systems as usual
         if (!gameOver)
         {
+            // Handle pausing
+            if (Input.GetKeyDown("escape"))
+            {
+                Time.timeScale = 1 - Time.timeScale;
+            }
+
             // Link processing
             var potentialNextLink = GetPotentialNextLink();
 
@@ -135,7 +141,7 @@ public class GameManagerBehaviour : MonoBehaviour
                 }.ToArray());
 
                 // Check to see if the connect key has been hit
-                if (Input.GetKeyDown("space"))
+                if (Input.GetKeyDown("space") && !IsPaused())
                 {
                     // If it has, then make connection
                     endOfChain.SetNextConnection(potentialNextLink);
@@ -344,6 +350,11 @@ public class GameManagerBehaviour : MonoBehaviour
     public bool IsGameOver()
     {
         return gameOver;
+    }
+
+    public bool IsPaused()
+    {
+        return Time.timeScale == 0;
     }
 
     public void TimePenalty(float penalty)
