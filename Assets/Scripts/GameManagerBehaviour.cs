@@ -23,6 +23,11 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public float alertRetentionTime = 5;
 
+    public GameObject homeIsland;
+
+    public List<Vector2> islandPositions;
+
+    public List<GameObject> islandPrefabs;
     public List<GameObject> deliveryPrefabs;
 
     public AudioSource newDeliveriesSound;
@@ -51,6 +56,18 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Find player
         player = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
+
+        // Generate islands
+        foreach (var islandPosition in islandPositions)
+        {
+            var selectedIslandPrefab = islandPrefabs[Random.Range(0, islandPrefabs.Count)];
+
+            var island = Instantiate(selectedIslandPrefab,
+                new Vector3(islandPosition.x + Random.Range(-10f, 10f), islandPosition.y + Random.Range(-10f, 10f), 5),
+                Quaternion.identity);
+
+            islandPrefabs.Remove(selectedIslandPrefab);
+        }
 
         // Find mailboxes
         mailboxes = GameObject.FindGameObjectsWithTag("Mailbox")
@@ -164,7 +181,7 @@ public class GameManagerBehaviour : MonoBehaviour
         {
             var deliveryPrefab = deliveryPrefabs[Random.Range(0, deliveryPrefabs.Count)];
             var mailbox = mailboxes[Random.Range(0, mailboxes.Count)];
-            var delivery = Instantiate(deliveryPrefab, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
+            var delivery = Instantiate(deliveryPrefab, new Vector3(2 + Random.Range(-2f, 2f), 10f + Random.Range(-2f, 2f), 0), Quaternion.identity).GetComponent<DeliveryBehaviour>();
             delivery.SetTarget(mailbox);
             deliveries.Add(delivery);
         }
@@ -303,7 +320,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
         data.PlayerLocation = player.transform.position / gameplayArea;
 
-        data.HomeLocation = new Vector2(0, 0);
+        data.HomeLocation = homeIsland.transform.position / gameplayArea;
 
         foreach (var mailbox in mailboxes)
         {
