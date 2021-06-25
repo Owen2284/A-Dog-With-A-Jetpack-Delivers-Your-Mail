@@ -63,7 +63,7 @@ public class GameManagerBehaviour : MonoBehaviour
             var selectedIslandPrefab = islandPrefabs[Random.Range(0, islandPrefabs.Count)];
 
             var island = Instantiate(selectedIslandPrefab,
-                new Vector3(islandPosition.x + Random.Range(-10f, 10f), islandPosition.y + Random.Range(-10f, 10f), 5),
+                new Vector3(islandPosition.x + Random.Range(-15f, 15f), islandPosition.y + Random.Range(-15f, 15f), 5),
                 Quaternion.identity);
 
             islandPrefabs.Remove(selectedIslandPrefab);
