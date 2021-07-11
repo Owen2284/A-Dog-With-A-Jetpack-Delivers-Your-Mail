@@ -244,7 +244,7 @@ MonoBehaviour:
   moveSpeed: 2
   projectilePrefab: {fileID: 5427500886059937681, guid: 6775edfda827d0e42a420c9e85c763f2, type: 3}
   playerDetectionRange: 15
-  timeBetweenShots: 2
+  timeBetweenShots: 1.5
   projectileSpeed: 1
 --- !u!60 &8856009581775643074
 PolygonCollider2D:
