@@ -731,7 +731,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -807,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &317319582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2757,7 +2757,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2768,13 +2768,54 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\"Dog_Bark.wav\" by michael_grinnell\r\nLink: https://freesound.org/s/464400/\r\nLicense:
-    http://creativecommons.org/licenses/by/3.0/\r\n\r\n\"locking a door_01.wav\"
-    by Dymewiz\r\nLink: https://freesound.org/s/131024/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r\nModifications:
-    Trimmed empty sound at end\r\n\r\n\"snapping-chain\" by CosmicEmbers\r\nLink:
-    https://freesound.org/s/161650/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r\nModifications:
-    Trimmed empty sound at start/end\r\n\r\n\"FuiteDeGaz.wav\" by davidou\r\nLink:
-    https://freesound.org/s/88461/\r\nLicense: http://creativecommons.org/licenses/by/3.0/\r"
+  m_Text: '"Dog_Bark.wav" by michael_grinnell
+
+    Link: https://freesound.org/s/464400/
+
+    License:
+    http://creativecommons.org/licenses/by/3.0/
+
+    
+
+    "locking a door_01.wav"
+    by Dymewiz
+
+    Link: https://freesound.org/s/131024/
+
+    License: http://creativecommons.org/licenses/by/3.0/
+
+    Modifications:
+    Trimmed empty sound at end
+
+    
+
+    "snapping-chain" by CosmicEmbers
+
+    Link:
+    https://freesound.org/s/161650/
+
+    License: http://creativecommons.org/licenses/by/3.0/
+
+    Modifications:
+    Trimmed empty sound at start/end
+
+    
+
+    "FuiteDeGaz.wav" by davidou
+
+    Link:
+    https://freesound.org/s/88461/
+
+    License: http://creativecommons.org/licenses/by/3.0/
+
+
+    "Balloon-Burst-07"
+    by Gniffelbaf
+
+    Link: https://freesound.org/people/Gniffelbaf/sounds/82121/
+
+    License:
+    http://creativecommons.org/licenses/by/3.0/'
 --- !u!222 &1363037467
 CanvasRenderer:
   m_ObjectHideFlags: 0

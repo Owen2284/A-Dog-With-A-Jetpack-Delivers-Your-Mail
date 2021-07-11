@@ -98,9 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583312d68ab9202468f1b4088c932bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 50
+  maxSpeed: 20
   health: 1
   moveSpeed: 1
+  deathSound: {fileID: 0}
+  pushForceMultiplier: 1
   attackDistance: 6
   homeStrayDistance: 12
 --- !u!50 &7796144328616669698

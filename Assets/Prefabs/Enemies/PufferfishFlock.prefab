@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3602637715113075514
+--- !u!1 &2270954759802620294
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4932950208551519806}
-  - component: {fileID: 8813057354679639021}
-  - component: {fileID: 3635245922570562959}
+  - component: {fileID: 7642171702027152514}
+  - component: {fileID: 6067872896371077457}
+  - component: {fileID: 5238193366231387280}
   m_Layer: 0
-  m_Name: CatFlock
+  m_Name: PufferfishFlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4932950208551519806
+--- !u!4 &7642171702027152514
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602637715113075514}
+  m_GameObject: {fileID: 2270954759802620294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.898137, y: 15.837072, z: 0}
+  m_LocalPosition: {x: 4.548872, y: 12.977416, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8813057354679639021
+--- !u!114 &6067872896371077457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602637715113075514}
+  m_GameObject: {fileID: 2270954759802620294}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26a7ef1ba0a89924f8dea8f6c830fe51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyToSpawn: {fileID: 5625069981507092037, guid: e593c0ca8817c13498991718be361ea3, type: 3}
-  spawnCountMin: 1
-  spawnCountMax: 4
---- !u!82 &3635245922570562959
+  enemyToSpawn: {fileID: 6786242001721853536, guid: 60bfbc7dd0162144bae29c48db2e5bf2, type: 3}
+  spawnCountMin: 3
+  spawnCountMax: 6
+--- !u!82 &5238193366231387280
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3602637715113075514}
+  m_GameObject: {fileID: 2270954759802620294}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}

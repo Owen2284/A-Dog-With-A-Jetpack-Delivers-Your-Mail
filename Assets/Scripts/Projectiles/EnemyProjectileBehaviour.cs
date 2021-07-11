@@ -20,8 +20,6 @@ public class EnemyProjectileBehaviour : BaseProjectileBehaviour
     {
         if (t.gameObject.tag == "Player" || t.gameObject.tag == "Delivery")
         {
-            Debug.Log("Enemy projectile collision");
-
             t.gameObject.GetComponent<ConnectableBehaviour>().TakeDamage(t);
 
             Destroy(this.gameObject);

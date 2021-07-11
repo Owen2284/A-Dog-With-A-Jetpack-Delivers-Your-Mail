@@ -6,6 +6,8 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
 {
     public int health = 1;
     public float moveSpeed = 1f;
+    public AudioSource deathSound;
+    public float pushForceMultiplier = 1f;
 
     protected PlayerBehaviour player;
 
@@ -40,6 +42,10 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
         // Destroy entity if at zero health
         if (health <= 0)
         {
+            if (deathSound != null)
+            {
+                deathSound.Play();
+            }
             Destroy(this.gameObject);
         }
     }

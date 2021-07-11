@@ -151,8 +151,8 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         var pointOfCollision = collision.GetContact(0).point;
 
         // Push entities away
-        PushAwayFrom(pointOfCollision, 1200);
-        enemy.PushAwayFrom(pointOfCollision, 1200);
+        PushAwayFrom(pointOfCollision, 1200 * enemy.pushForceMultiplier);
+        enemy.PushAwayFrom(pointOfCollision, 1200 * enemy.pushForceMultiplier);
 
         TakeDamage(collision);
     }
