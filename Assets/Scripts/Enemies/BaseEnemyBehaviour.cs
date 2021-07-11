@@ -8,6 +8,7 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
     public float moveSpeed = 1f;
     public AudioSource deathSound;
     public float pushForceMultiplier = 1f;
+    public int scoreValue = 50;
 
     protected PlayerBehaviour player;
 
@@ -42,10 +43,16 @@ public class BaseEnemyBehaviour : BaseEntityBehaviour
         // Destroy entity if at zero health
         if (health <= 0)
         {
+            // Play death sound (if there is one)
             if (deathSound != null)
             {
                 deathSound.Play();
             }
+
+            // Apply score
+            gameManager.AwardScore(scoreValue);
+
+            // Destroy the object
             Destroy(this.gameObject);
         }
     }

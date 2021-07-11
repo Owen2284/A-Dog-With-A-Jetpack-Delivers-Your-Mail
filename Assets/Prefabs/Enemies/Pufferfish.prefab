@@ -140,3 +140,4 @@ MonoBehaviour:
   moveSpeed: 1
   deathSound: {fileID: 0}
   pushForceMultiplier: 2
+  scoreValue: 0

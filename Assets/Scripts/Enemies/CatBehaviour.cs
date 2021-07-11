@@ -34,6 +34,7 @@ public class CatBehaviour : BaseEnemyBehaviour
         if (balloon != null && balloon.deathSound == null)
         {
             balloon.deathSound = deathSound;
+            deathSound = null;
         }
 
         Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
@@ -63,7 +64,14 @@ public class CatBehaviour : BaseEnemyBehaviour
             else
             {
                 timeToNextShot -= Time.deltaTime;
+
             }
+        }
+
+        // Remove if fallen off the map
+        if (transform.position.y < -400)
+        {
+            TakeDamage();
         }
     }
 }

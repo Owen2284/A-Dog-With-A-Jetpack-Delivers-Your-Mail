@@ -140,6 +140,7 @@ MonoBehaviour:
   moveSpeed: 0
   deathSound: {fileID: 0}
   pushForceMultiplier: 1
+  scoreValue: 0
 --- !u!1 &5625069981507092037
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   moveSpeed: 2
   deathSound: {fileID: 0}
   pushForceMultiplier: 1
+  scoreValue: 50
   projectilePrefab: {fileID: 5427500886059937681, guid: 6775edfda827d0e42a420c9e85c763f2, type: 3}
   playerDetectionRange: 15
   timeBetweenShots: 1.5

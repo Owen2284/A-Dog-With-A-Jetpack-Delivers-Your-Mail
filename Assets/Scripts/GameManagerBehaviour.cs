@@ -402,6 +402,11 @@ public class GameManagerBehaviour : MonoBehaviour
         // Return the closest delivery that's within range (if none are, null is returned)
         return closestSoFar;
     }
+
+    public void AwardScore(int scoreAwarded)
+    {
+        score += scoreAwarded;
+    }
 }
 
 public class AlertItem
