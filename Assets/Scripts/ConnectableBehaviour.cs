@@ -40,8 +40,8 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         {
             // Set up the line coordinates
             nextItemLine.SetPositions(new List<Vector3> {
-                this.transform.position,
-                nextConnectedItem.transform.position
+                new Vector3(this.transform.position.x, this.transform.position.y, 1),
+                new Vector3(nextConnectedItem.transform.position.x, nextConnectedItem.transform.position.y, 1)
             }.ToArray());
         }
 
@@ -69,17 +69,9 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         // Link with line
         nextItemLine.enabled = true;
         nextItemLine.SetPositions(new List<Vector3> {
-            new Vector3(
-                this.transform.position.x,
-                this.transform.position.y,
-                1
-            ),
-            new Vector3(
-                nextConnectedItem.transform.position.x,
-                nextConnectedItem.transform.position.y,
-                1
-            )
-        }.ToArray());
+                new Vector3(this.transform.position.x, this.transform.position.y, 1),
+                new Vector3(that.transform.position.x, that.transform.position.y, 1)
+            }.ToArray());
 
         // Link with hinge
         joint.enabled = true;
