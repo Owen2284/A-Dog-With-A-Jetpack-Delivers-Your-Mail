@@ -119,7 +119,7 @@ public class PlayerBehaviour : ConnectableBehaviour
                 if (Input.GetKeyDown("r") && !gameManager.IsPaused())
                 {
                     BreakChain();
-                    transform.position = new Vector3(-8.76f, -1.1f, 0);
+                    transform.position = new Vector3(-6f, 8.8f, 0);
                     gameManager.AddAlert("Reset!");
                     gameManager.TimePenalty(resetTimePenalty);
                 }
