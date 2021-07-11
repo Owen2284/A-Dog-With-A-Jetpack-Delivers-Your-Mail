@@ -154,6 +154,11 @@ public class ConnectableBehaviour : BaseEntityBehaviour
         PushAwayFrom(pointOfCollision, 1200);
         enemy.PushAwayFrom(pointOfCollision, 1200);
 
+        TakeDamage(collision);
+    }
+
+    public void TakeDamage(Collision2D collision)
+    {
         // Ignore request for damage if invincible
         if (invincibilityTimeRemaining > 0)
         {
