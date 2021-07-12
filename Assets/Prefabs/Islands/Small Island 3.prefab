@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7957817011337871123}
   - component: {fileID: 4654829036545627355}
   - component: {fileID: 4415204958012864280}
+  - component: {fileID: 8934965842339200988}
   m_Layer: 0
   m_Name: Small Island 3
   m_TagString: Untagged
@@ -117,3 +118,24 @@ PolygonCollider2D:
       - {x: 0.21689606, y: -0.16813087}
       - {x: 0.33805594, y: 0.11024205}
       - {x: 0.18444571, y: 0.32006967}
+--- !u!50 &8934965842339200988
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184610481456922519}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
