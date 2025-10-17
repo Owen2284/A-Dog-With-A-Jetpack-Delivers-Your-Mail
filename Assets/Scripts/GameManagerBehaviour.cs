@@ -18,6 +18,7 @@ public class GameManagerBehaviour : MonoBehaviour
 
     public float initialTime = 60;
     public float bonusTimePerDelivery = 10;
+    public float timePenaltyForLostDelivery = 5;
 
     public float timeBetweenNewDeliveries = 30;
 
@@ -98,7 +99,7 @@ public class GameManagerBehaviour : MonoBehaviour
         timeUntilNewDeliveries -= Time.deltaTime;
 
         // End game if timer has hit zero
-        if (remainingTime == 0)
+        if (remainingTime <= 0)
         {
             gameOver = true;
             player.DisableControl();
@@ -280,6 +281,9 @@ public class GameManagerBehaviour : MonoBehaviour
 
         // Destroy delivery
         Destroy(delivery.gameObject);
+
+        // Deduct time as penalty
+        TimePenalty(timePenaltyForLostDelivery);
 
         // Send alert if not already present
         var alertText = "Delivery lost...";
